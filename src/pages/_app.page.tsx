@@ -1,4 +1,3 @@
-import "@/styles/globals.css";
 import { GlobalCSS } from "@sun-river/components";
 import type { AppProps } from "next/app";
 
