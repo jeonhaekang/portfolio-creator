@@ -1,3 +1,5 @@
+import { Section } from "@/components/Section";
+
 export default function Home() {
-  return <div>initialize</div>;
+  return <Section>initialize</Section>;
 }
