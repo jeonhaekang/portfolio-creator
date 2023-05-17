@@ -14,7 +14,7 @@ export const Container = styled.header`
   ${setSize("100%", 0)}
 `;
 
-export const Contents = styled.header`
+export const Contents = styled.div`
   ${flex({ align: "center" })}
 
   ${setSize({ width: "100%", height: MAIN_HEADER_HEIGHT })}
@@ -36,6 +36,25 @@ export const Menus = styled.div`
 `;
 
 export const MenuButton = styled.button`
+  position: relative;
+
   ${setTypography("paragraph2")}
   color: ${theme.colors.white};
+
+  &::after {
+    content: "";
+    ${position.absolute({ left: 0, bottom: -2 })}
+
+    ${setSize("100%", 2)}
+
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: 300ms;
+
+    background-color: ${theme.colors.white};
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
 `;
