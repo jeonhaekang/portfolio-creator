@@ -4,6 +4,9 @@ export const GlobalCSS = () => {
   return (
     <Global
       styles={css`
+        * {
+          box-sizing: border-box;
+        }
         html,
         body,
         div,
