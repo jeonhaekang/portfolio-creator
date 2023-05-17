@@ -1,3 +1,4 @@
+import { JoinForm } from "~/components/Form/JoinForm";
 import { LoginForm } from "~/components/Form/LoginForm";
 import { Modal } from "~/components/Modal/Modal";
 import { useBoolean } from "~/hooks";
@@ -27,7 +28,7 @@ export const MainHeader = () => {
       </Modal>
 
       <Modal isOpen={isJoinFormOpen} setIsOpen={joinFormController}>
-        <LoginForm />
+        <JoinForm />
       </Modal>
     </Styled.Container>
   );
