@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { position, setSize, theme } from "@sun-river/components";
+import { fade, position, setSize, theme } from "@sun-river/components";
 import { hexToRgba } from "~/utils";
 
 export const Overlay = styled.div`
@@ -9,6 +9,8 @@ export const Overlay = styled.div`
   ${setSize("100vw", "100vh")}
 
   background-color: ${hexToRgba(theme.colors.black, 0.7)};
+
+  ${fade({ play: "in" })}
 `;
 
 export const Inner = styled.div`
