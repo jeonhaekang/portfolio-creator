@@ -1,7 +1,9 @@
+type UserState = "member" | "guest" | "none";
+
 export interface InitialState {
-  isLogin: boolean;
+  user: UserState;
 }
 
 export interface AccountState extends InitialState {
-  setState: (state: boolean) => void;
+  setState: (state: UserState) => void;
 }

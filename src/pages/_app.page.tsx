@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const setUserState = useAccount(state => state.setState);
 
   useEffect(() => {
-    observeLoginState(user => setUserState(!!user));
+    observeLoginState(user => setUserState(user ? "member" : "guest"));
   }, [setUserState]);
 
   return (

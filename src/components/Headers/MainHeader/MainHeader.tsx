@@ -13,11 +13,28 @@ export const MainHeader = () => {
         <Styled.Title>PortfolioCreator</Styled.Title>
 
         <Styled.Menus>
-          {app.menusAttributes.map(attribute => (
-            <Styled.MenuButton key={attribute.children} {...attribute} />
-          ))}
+          {app.user === "member" && (
+            <Styled.MenuButton onClick={app.requestLogoutUser}>
+              Logout
+            </Styled.MenuButton>
+          )}
+
+          {app.user === "guest" && (
+            <>
+              <Styled.MenuButton onClick={app.loginModal.controller.on}>
+                Login
+              </Styled.MenuButton>
+              <Styled.MenuButton onClick={app.joinModal.controller.on}>
+                Join
+              </Styled.MenuButton>
+            </>
+          )}
         </Styled.Menus>
       </Styled.Contents>
+
+      <Modal name={LOGIN_FORM_MODAL}>
+        <LoginForm />
+      </Modal>
 
       <Modal name={LOGIN_FORM_MODAL}>
         <LoginForm />
