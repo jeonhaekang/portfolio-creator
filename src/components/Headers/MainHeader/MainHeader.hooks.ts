@@ -1,47 +1,43 @@
 import { useCallback, useMemo } from "react";
-import { useBoolean } from "~/hooks";
+import { JOIN_FORM_MODAL } from "~/components/Form/JoinForm";
+import { LOGIN_FORM_MODAL } from "~/components/Form/LoginForm";
 import { useAccount } from "~/state/client/account";
+import { useModal } from "~/state/client/modal";
 import { useLogoutUser } from "~/state/server/account/mutations";
 
 export const useMainHeader = () => {
+  const { loginModal, joinModal } = useModal(state => ({
+    loginModal: state.modals[LOGIN_FORM_MODAL],
+    joinModal: state.modals[JOIN_FORM_MODAL]
+  }));
+
   const isLogin = useAccount(state => state.isLogin);
 
-  const [isLoginFormOpen, loginController] = useBoolean();
-  const [isJoinFormOpen, joinController] = useBoolean();
-
   const logoutUser = useLogoutUser();
-
-  const loginModal = useMemo(
-    () => ({
-      isOpen: isLoginFormOpen,
-      controller: loginController
-    }),
-    [isLoginFormOpen, loginController]
-  );
-
-  const joinModal = useMemo(
-    () => ({
-      isOpen: isJoinFormOpen,
-      controller: joinController
-    }),
-    [isJoinFormOpen, joinController]
-  );
 
   const requestLogoutUser = useCallback(() => {
     logoutUser.mutate();
   }, [logoutUser]);
 
   const userMenusAttributes = useMemo(
-    () => [{ children: "Logout", onClick: requestLogoutUser }],
+    () => [
+      {
+        children: "Create",
+        onClick: () => {
+          console.log("create");
+        }
+      },
+      { children: "Logout", onClick: requestLogoutUser }
+    ],
     [requestLogoutUser]
   );
 
   const guestMenusAttributes = useMemo(
     () => [
-      { children: "Login", onClick: loginModal.controller.on },
-      { children: "Join", onClick: joinModal.controller.on }
+      { children: "Login", onClick: loginModal?.controller.on },
+      { children: "Join", onClick: joinModal?.controller.on }
     ],
-    [joinModal.controller.on, loginModal.controller.on]
+    [joinModal, loginModal]
   );
 
   const menusAttributes = useMemo(

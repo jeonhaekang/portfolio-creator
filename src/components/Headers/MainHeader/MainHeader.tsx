@@ -1,5 +1,5 @@
-import { JoinForm } from "~/components/Form/JoinForm";
-import { LoginForm } from "~/components/Form/LoginForm";
+import { JOIN_FORM_MODAL, JoinForm } from "~/components/Form/JoinForm";
+import { LOGIN_FORM_MODAL, LoginForm } from "~/components/Form/LoginForm";
 import { Modal } from "~/components/Modal/Modal";
 import { useMainHeader } from "./MainHeader.hooks";
 import * as Styled from "./MainHeader.styles";
@@ -19,11 +19,11 @@ export const MainHeader = () => {
         </Styled.Menus>
       </Styled.Contents>
 
-      <Modal {...app.loginModal}>
+      <Modal name={LOGIN_FORM_MODAL}>
         <LoginForm />
       </Modal>
 
-      <Modal {...app.joinModal}>
+      <Modal name={JOIN_FORM_MODAL}>
         <JoinForm />
       </Modal>
     </Styled.Container>

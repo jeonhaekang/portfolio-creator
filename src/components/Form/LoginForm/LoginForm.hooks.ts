@@ -1,12 +1,15 @@
 import { useDialog } from "@sun-river/components";
 import { FormEvent, useCallback } from "react";
-import { OptionalModalController } from "~/components/Modal";
 import { useForm } from "~/hooks";
+import { useModal } from "~/state/client/modal";
 import { useLoginUser } from "~/state/server/account/mutations";
 import { getErrorCode } from "~/utils/getErrorCode";
+import { LOGIN_FORM_MODAL } from "./LoginForm.constants";
 
-export const useLoginForm = ({ controller }: OptionalModalController) => {
+export const useLoginForm = () => {
   const { alert } = useDialog();
+
+  const loginModal = useModal(state => state.modals[LOGIN_FORM_MODAL]);
 
   const [loginFormData, loginFormController, isLoginFormValid] = useForm({
     email: "",
@@ -15,7 +18,7 @@ export const useLoginForm = ({ controller }: OptionalModalController) => {
 
   const loginUser = useLoginUser({
     onSuccess: () => {
-      controller?.off();
+      loginModal.controller.off();
     },
     onError: error => {
       alert({ message: getErrorCode(error.code) });

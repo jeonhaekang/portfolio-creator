@@ -1,12 +1,15 @@
 import { useDialog } from "@sun-river/components";
 import { FormEvent, useCallback } from "react";
-import { OptionalModalController } from "~/components/Modal";
 import { useForm } from "~/hooks";
+import { useModal } from "~/state/client/modal";
 import { useCreateUser } from "~/state/server/account/mutations";
 import { getErrorCode } from "~/utils/getErrorCode";
+import { JOIN_FORM_MODAL } from "./JoinForm.constants";
 
-export const useJoinForm = ({ controller }: OptionalModalController) => {
+export const useJoinForm = () => {
   const { alert } = useDialog();
+
+  const joinModal = useModal(state => state.modals[JOIN_FORM_MODAL]);
 
   const [joinFormData, joinFormController, isJoinFormValid] = useForm({
     email: "",
@@ -17,7 +20,7 @@ export const useJoinForm = ({ controller }: OptionalModalController) => {
     onSuccess: () => {
       alert({ message: "회원가입에 성공하였습니다!" });
 
-      controller?.off();
+      joinModal.controller.off();
     },
     onError: error => {
       alert({ message: getErrorCode(error.code) });

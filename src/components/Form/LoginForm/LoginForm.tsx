@@ -1,10 +1,9 @@
 import { Button, Input, LabelBox } from "@sun-river/components";
-import { OptionalModalController } from "~/components/Modal";
 import { useLoginForm } from "./LoginForm.hooks";
 import * as Styled from "./LoginForm.styles";
 
-export const LoginForm = (props: OptionalModalController) => {
-  const app = useLoginForm(props);
+export const LoginForm = () => {
+  const app = useLoginForm();
 
   return (
     <Styled.LoginForm onSubmit={app.requestLogin}>
