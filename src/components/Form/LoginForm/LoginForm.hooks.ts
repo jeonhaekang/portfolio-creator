@@ -1,10 +1,11 @@
 import { useDialog } from "@sun-river/components";
 import { FormEvent, useCallback } from "react";
+import { OptionalModalController } from "~/components/Modal";
 import { useForm } from "~/hooks";
 import { useLoginUser } from "~/state/server/account/mutations";
 import { getErrorCode } from "~/utils/getErrorCode";
 
-export const useLoginForm = () => {
+export const useLoginForm = ({ setIsOpen }: OptionalModalController) => {
   const { alert } = useDialog();
 
   const [loginFormData, loginFormController, isLoginFormValid] = useForm({
@@ -14,7 +15,7 @@ export const useLoginForm = () => {
 
   const loginUser = useLoginUser({
     onSuccess: () => {
-      alert({ message: "로그인에 성공하였습니다!" });
+      setIsOpen?.off();
     },
     onError: error => {
       alert({ message: getErrorCode(error.code) });

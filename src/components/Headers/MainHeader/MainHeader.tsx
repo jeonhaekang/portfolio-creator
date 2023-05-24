@@ -5,7 +5,7 @@ import { useMainHeader } from "./MainHeader.hooks";
 import * as Styled from "./MainHeader.styles";
 
 export const MainHeader = () => {
-  const { requestLogoutUser, loginForm, joinForm, isLogin } = useMainHeader();
+  const app = useMainHeader();
 
   return (
     <Styled.Container>
@@ -13,29 +13,17 @@ export const MainHeader = () => {
         <Styled.Title>PortfolioCreator</Styled.Title>
 
         <Styled.Menus>
-          {isLogin ? (
-            <Styled.MenuButton onClick={requestLogoutUser}>
-              Logout
-            </Styled.MenuButton>
-          ) : (
-            <>
-              <Styled.MenuButton onClick={loginForm.controller.on}>
-                Login
-              </Styled.MenuButton>
-
-              <Styled.MenuButton onClick={joinForm.controller.on}>
-                Join
-              </Styled.MenuButton>
-            </>
-          )}
+          {app.menusAttributes.map(attribute => (
+            <Styled.MenuButton key={attribute.children} {...attribute} />
+          ))}
         </Styled.Menus>
       </Styled.Contents>
 
-      <Modal isOpen={loginForm.isOpen} setIsOpen={loginForm.controller}>
+      <Modal isOpen={app.login.isOpen} setIsOpen={app.login.controller}>
         <LoginForm />
       </Modal>
 
-      <Modal isOpen={joinForm.isOpen} setIsOpen={joinForm.controller}>
+      <Modal isOpen={app.join.isOpen} setIsOpen={app.join.controller}>
         <JoinForm />
       </Modal>
     </Styled.Container>

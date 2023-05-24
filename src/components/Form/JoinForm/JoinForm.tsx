@@ -1,9 +1,10 @@
 import { Button, Input, LabelBox, Typography } from "@sun-river/components";
+import { OptionalModalController } from "~/components/Modal";
 import { useJoinForm } from "./JoinForm.hooks";
 import * as Styled from "./JoinForm.styles";
 
-export const JoinForm = () => {
-  const app = useJoinForm();
+export const JoinForm = (props: OptionalModalController) => {
+  const app = useJoinForm(props);
 
   return (
     <Styled.JoinForm onSubmit={app.requestCreateUser}>

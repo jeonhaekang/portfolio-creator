@@ -1,10 +1,11 @@
 import { useDialog } from "@sun-river/components";
 import { FormEvent, useCallback } from "react";
+import { OptionalModalController } from "~/components/Modal";
 import { useForm } from "~/hooks";
 import { useCreateUser } from "~/state/server/account/mutations";
 import { getErrorCode } from "~/utils/getErrorCode";
 
-export const useJoinForm = () => {
+export const useJoinForm = ({ setIsOpen }: OptionalModalController) => {
   const { alert } = useDialog();
 
   const [joinFormData, joinFormController, isJoinFormValid] = useForm({
@@ -15,6 +16,8 @@ export const useJoinForm = () => {
   const createUser = useCreateUser({
     onSuccess: () => {
       alert({ message: "회원가입에 성공하였습니다!" });
+
+      setIsOpen?.off();
     },
     onError: error => {
       alert({ message: getErrorCode(error.code) });

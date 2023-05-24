@@ -6,34 +6,53 @@ import { useLogoutUser } from "~/state/server/account/mutations";
 export const useMainHeader = () => {
   const isLogin = useAccount(state => state.isLogin);
 
-  const [isLoginFormOpen, loginFormController] = useBoolean();
-  const [isJoinFormOpen, joinFormController] = useBoolean();
+  const [isLoginFormOpen, loginController] = useBoolean();
+  const [isJoinFormOpen, joinController] = useBoolean();
 
   const logoutUser = useLogoutUser();
 
-  const loginForm = useMemo(
+  const login = useMemo(
     () => ({
       isOpen: isLoginFormOpen,
-      controller: loginFormController
+      controller: loginController
     }),
-    [isLoginFormOpen, loginFormController]
+    [isLoginFormOpen, loginController]
   );
 
-  const joinForm = useMemo(
+  const join = useMemo(
     () => ({
       isOpen: isJoinFormOpen,
-      controller: joinFormController
+      controller: joinController
     }),
-    [isJoinFormOpen, joinFormController]
+    [isJoinFormOpen, joinController]
   );
 
   const requestLogoutUser = useCallback(() => {
     logoutUser.mutate();
   }, [logoutUser]);
 
+  const userMenusAttributes = useMemo(
+    () => [{ children: "Logout", onClick: requestLogoutUser }],
+    [requestLogoutUser]
+  );
+
+  const guestMenusAttributes = useMemo(
+    () => [
+      { children: "Login", onClick: login.controller.on },
+      { children: "Join", onClick: join.controller.on }
+    ],
+    [join.controller.on, login.controller.on]
+  );
+
+  const menusAttributes = useMemo(
+    () => (isLogin ? userMenusAttributes : guestMenusAttributes),
+    [guestMenusAttributes, isLogin, userMenusAttributes]
+  );
+
   return {
-    loginForm,
-    joinForm,
+    menusAttributes,
+    login,
+    join,
     isLogin,
     requestLogoutUser
   };
