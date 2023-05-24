@@ -1,8 +1,4 @@
-import {
-  useBodyScrollLock,
-  useClickAway,
-  useKeyPressEvent
-} from "@sun-river/components";
+import { useBodyScrollLock, useKeyPressEvent } from "@sun-river/components";
 import { PropsWithChildren, useRef } from "react";
 import { createPortal } from "react-dom";
 import * as Styled from "./Modal.styles";
@@ -16,8 +12,6 @@ export const Modal = ({
 }: PropsWithChildren<ModalProps>) => {
   const innerRef = useRef<HTMLDivElement>(null);
 
-  useClickAway(innerRef, () => setIsOpen.off());
-
   useKeyPressEvent("Escape", () => setIsOpen.off());
 
   useBodyScrollLock(isOpen);
@@ -26,9 +20,11 @@ export const Modal = ({
 
   return createPortal(
     <Styled.Overlay>
-      <Styled.Inner ref={innerRef} width={width}>
+      <Styled.Background onClick={setIsOpen.off} />
+
+      <Styled.Content ref={innerRef} width={width}>
         {children}
-      </Styled.Inner>
+      </Styled.Content>
     </Styled.Overlay>,
     document.getElementById("portal-root") as HTMLDivElement
   );

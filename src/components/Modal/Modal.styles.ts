@@ -6,14 +6,16 @@ export const Overlay = styled.div`
   ${position.fixed()}
   z-index: 9999;
 
-  ${setSize("100vw", "100vh")}
-
-  background-color: ${hexToRgba(theme.colors.black, 0.7)};
-
   ${fade({ play: "in" })}
 `;
 
-export const Inner = styled.div<{ width: number }>`
+export const Background = styled.div`
+  ${setSize("100vw", "100vh")}
+
+  background-color: ${hexToRgba(theme.colors.black, 0.7)};
+`;
+
+export const Content = styled.div<{ width: number }>`
   ${position.posCenter()}
 
   overflow: scroll;
