@@ -1,7 +1,12 @@
 import {
+  ErrorFn,
+  NextOrObserver,
+  User,
   createUserWithEmailAndPassword,
   getAuth,
-  signInWithEmailAndPassword
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut
 } from "firebase/auth";
 import { AccountPayload } from "~/types/Account";
 import { firebaseApp } from "../firebaseConfig";
@@ -18,4 +23,15 @@ export const loginUser = async ({ email, password }: AccountPayload) => {
   const response = await signInWithEmailAndPassword(auth, email, password);
 
   return response;
+};
+
+export const logoutUser = async () => {
+  await signOut(auth);
+};
+
+export const observeLoginState = (
+  onChange: NextOrObserver<User>,
+  onError?: ErrorFn
+) => {
+  onAuthStateChanged(auth, onChange, onError);
 };

@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { PickMutationOptions } from "../server.types";
-import { createUser, loginUser } from "./apis";
+import { createUser, loginUser, logoutUser } from "./apis";
 
 export const useCreateUser = (
   options: PickMutationOptions<typeof createUser, "onSuccess" | "onError">
@@ -17,5 +17,11 @@ export const useLoginUser = (
   return useMutation({
     mutationFn: loginUser,
     ...options
+  });
+};
+
+export const useLogoutUser = () => {
+  return useMutation({
+    mutationFn: logoutUser
   });
 };

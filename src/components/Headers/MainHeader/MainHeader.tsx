@@ -1,12 +1,11 @@
 import { JoinForm } from "~/components/Form/JoinForm";
 import { LoginForm } from "~/components/Form/LoginForm";
 import { Modal } from "~/components/Modal/Modal";
-import { useBoolean } from "~/hooks";
+import { useMainHeader } from "./MainHeader.hooks";
 import * as Styled from "./MainHeader.styles";
 
 export const MainHeader = () => {
-  const [isLoginFormOpen, loginFormController] = useBoolean();
-  const [isJoinFormOpen, joinFormController] = useBoolean();
+  const { requestLogoutUser, loginForm, joinForm, isLogin } = useMainHeader();
 
   return (
     <Styled.Container>
@@ -14,20 +13,29 @@ export const MainHeader = () => {
         <Styled.Title>PortfolioCreator</Styled.Title>
 
         <Styled.Menus>
-          <Styled.MenuButton onClick={loginFormController.on}>
-            Login
-          </Styled.MenuButton>
-          <Styled.MenuButton onClick={joinFormController.on}>
-            Join
-          </Styled.MenuButton>
+          {isLogin ? (
+            <Styled.MenuButton onClick={requestLogoutUser}>
+              Logout
+            </Styled.MenuButton>
+          ) : (
+            <>
+              <Styled.MenuButton onClick={loginForm.controller.on}>
+                Login
+              </Styled.MenuButton>
+
+              <Styled.MenuButton onClick={joinForm.controller.on}>
+                Join
+              </Styled.MenuButton>
+            </>
+          )}
         </Styled.Menus>
       </Styled.Contents>
 
-      <Modal isOpen={isLoginFormOpen} setIsOpen={loginFormController}>
+      <Modal isOpen={loginForm.isOpen} setIsOpen={loginForm.controller}>
         <LoginForm />
       </Modal>
 
-      <Modal isOpen={isJoinFormOpen} setIsOpen={joinFormController}>
+      <Modal isOpen={joinForm.isOpen} setIsOpen={joinForm.controller}>
         <JoinForm />
       </Modal>
     </Styled.Container>
