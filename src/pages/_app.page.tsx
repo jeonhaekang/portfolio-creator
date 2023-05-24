@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useAccount } from "~/state/client/account";
 import { observeLoginState } from "~/state/server/account";
 import { GlobalCSS } from "~/styles";
+import "../styles/font-face.css";
 
 const queryClient = new QueryClient();
 

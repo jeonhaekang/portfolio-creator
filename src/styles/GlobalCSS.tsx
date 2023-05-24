@@ -4,6 +4,21 @@ export const GlobalCSS = () => {
   return (
     <Global
       styles={css`
+        /* languages font */
+        div,
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        button,
+        a,
+        span {
+          font-family: "Noto Sans KR";
+        }
+
+        /* responsive font */
         html {
           font-size: 12px;
         }
