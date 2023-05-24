@@ -7,13 +7,13 @@ import { ModalProps } from "./Modal.types";
 
 export const Modal = ({
   isOpen,
-  setIsOpen,
+  controller,
   width = 500,
   children
 }: PropsWithElement<ModalProps>) => {
   const innerRef = useRef<HTMLDivElement>(null);
 
-  useKeyPressEvent("Escape", () => setIsOpen.off());
+  useKeyPressEvent("Escape", () => controller.off());
 
   useBodyScrollLock(isOpen);
 
@@ -21,10 +21,10 @@ export const Modal = ({
 
   return createPortal(
     <Styled.Overlay>
-      <Styled.Background onClick={setIsOpen.off} />
+      <Styled.Background onClick={controller.off} />
 
       <Styled.Content ref={innerRef} width={width}>
-        {cloneElement(children, { isOpen, setIsOpen })}
+        {cloneElement(children, { isOpen, controller })}
       </Styled.Content>
     </Styled.Overlay>,
     document.getElementById("portal-root") as HTMLDivElement
