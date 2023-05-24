@@ -14,6 +14,8 @@ export const GlobalCSS = () => {
         h5,
         button,
         a,
+        input,
+        textarea,
         span {
           font-family: "Noto Sans KR";
         }
