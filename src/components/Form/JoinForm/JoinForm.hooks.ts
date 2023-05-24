@@ -5,7 +5,7 @@ import { useForm } from "~/hooks";
 import { useCreateUser } from "~/state/server/account/mutations";
 import { getErrorCode } from "~/utils/getErrorCode";
 
-export const useJoinForm = ({ setIsOpen }: OptionalModalController) => {
+export const useJoinForm = ({ controller }: OptionalModalController) => {
   const { alert } = useDialog();
 
   const [joinFormData, joinFormController, isJoinFormValid] = useForm({
@@ -17,7 +17,7 @@ export const useJoinForm = ({ setIsOpen }: OptionalModalController) => {
     onSuccess: () => {
       alert({ message: "회원가입에 성공하였습니다!" });
 
-      setIsOpen?.off();
+      controller?.off();
     },
     onError: error => {
       alert({ message: getErrorCode(error.code) });

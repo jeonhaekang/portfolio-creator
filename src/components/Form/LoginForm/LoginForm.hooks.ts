@@ -5,7 +5,7 @@ import { useForm } from "~/hooks";
 import { useLoginUser } from "~/state/server/account/mutations";
 import { getErrorCode } from "~/utils/getErrorCode";
 
-export const useLoginForm = ({ setIsOpen }: OptionalModalController) => {
+export const useLoginForm = ({ controller }: OptionalModalController) => {
   const { alert } = useDialog();
 
   const [loginFormData, loginFormController, isLoginFormValid] = useForm({
@@ -15,7 +15,7 @@ export const useLoginForm = ({ setIsOpen }: OptionalModalController) => {
 
   const loginUser = useLoginUser({
     onSuccess: () => {
-      setIsOpen?.off();
+      controller?.off();
     },
     onError: error => {
       alert({ message: getErrorCode(error.code) });
