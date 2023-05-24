@@ -15,6 +15,7 @@ const baseStyle = ({
     ${center && flex.center({ direction: "column" })}
 
     ${full && setSize({ minHeight: "100vh" })}
+    overflow-x: hidden;
 
     background-color: ${colors[color]};
   `;
