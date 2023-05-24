@@ -11,7 +11,7 @@ export const useMainHeader = () => {
 
   const logoutUser = useLogoutUser();
 
-  const login = useMemo(
+  const loginModal = useMemo(
     () => ({
       isOpen: isLoginFormOpen,
       controller: loginController
@@ -19,7 +19,7 @@ export const useMainHeader = () => {
     [isLoginFormOpen, loginController]
   );
 
-  const join = useMemo(
+  const joinModal = useMemo(
     () => ({
       isOpen: isJoinFormOpen,
       controller: joinController
@@ -38,10 +38,10 @@ export const useMainHeader = () => {
 
   const guestMenusAttributes = useMemo(
     () => [
-      { children: "Login", onClick: login.controller.on },
-      { children: "Join", onClick: join.controller.on }
+      { children: "Login", onClick: loginModal.controller.on },
+      { children: "Join", onClick: joinModal.controller.on }
     ],
-    [join.controller.on, login.controller.on]
+    [joinModal.controller.on, loginModal.controller.on]
   );
 
   const menusAttributes = useMemo(
@@ -51,8 +51,8 @@ export const useMainHeader = () => {
 
   return {
     menusAttributes,
-    login,
-    join,
+    loginModal,
+    joinModal,
     isLogin,
     requestLogoutUser
   };

@@ -19,11 +19,11 @@ export const MainHeader = () => {
         </Styled.Menus>
       </Styled.Contents>
 
-      <Modal {...app.login}>
+      <Modal {...app.loginModal}>
         <LoginForm />
       </Modal>
 
-      <Modal {...app.join}>
+      <Modal {...app.joinModal}>
         <JoinForm />
       </Modal>
     </Styled.Container>
