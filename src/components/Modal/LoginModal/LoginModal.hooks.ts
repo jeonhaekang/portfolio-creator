@@ -4,7 +4,7 @@ import { useForm } from "~/hooks";
 import { useModal } from "~/state/client/modal";
 import { useLoginUser } from "~/state/server/account/mutations";
 import { getErrorCode } from "~/utils/getErrorCode";
-import { LOGIN_FORM_MODAL } from "./LoginForm.constants";
+import { LOGIN_FORM_MODAL } from "./LoginModal.constants";
 
 export const useLoginForm = () => {
   const { alert } = useDialog();

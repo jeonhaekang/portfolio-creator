@@ -4,7 +4,7 @@ import { useForm } from "~/hooks";
 import { useModal } from "~/state/client/modal";
 import { useCreateUser } from "~/state/server/account/mutations";
 import { getErrorCode } from "~/utils/getErrorCode";
-import { JOIN_FORM_MODAL } from "./JoinForm.constants";
+import { JOIN_FORM_MODAL } from "./JoinModal.constants";
 
 export const useJoinForm = () => {
   const { alert } = useDialog();

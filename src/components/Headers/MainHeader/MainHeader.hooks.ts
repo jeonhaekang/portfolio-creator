@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import { JOIN_FORM_MODAL } from "~/components/Form/JoinForm";
-import { LOGIN_FORM_MODAL } from "~/components/Form/LoginForm";
+import { JOIN_FORM_MODAL } from "~/components/Modal/JoinModal";
+import { LOGIN_FORM_MODAL } from "~/components/Modal/LoginModal";
 import { useAccount } from "~/state/client/account";
 import { useModal } from "~/state/client/modal";
 import { useLogoutUser } from "~/state/server/account/mutations";
