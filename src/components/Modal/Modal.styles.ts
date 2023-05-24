@@ -13,16 +13,17 @@ export const Overlay = styled.div`
   ${fade({ play: "in" })}
 `;
 
-export const Inner = styled.div`
+export const Inner = styled.div<{ width: number }>`
   ${position.posCenter()}
 
   overflow: scroll;
 
-  ${setSize({
-    width: 600,
-    maxWidth: `calc(100vw - 6rem)`,
-    maxHeight: `calc(100vh - 6rem)`
-  })}
+  ${({ width }) =>
+    setSize({
+      width,
+      maxWidth: `calc(100vw - 6rem)`,
+      maxHeight: `calc(100vh - 6rem)`
+    })}
 
   padding: 1rem;
 

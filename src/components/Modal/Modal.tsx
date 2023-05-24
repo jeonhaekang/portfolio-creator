@@ -11,6 +11,7 @@ import { ModalProps } from "./Modal.types";
 export const Modal = ({
   isOpen,
   setIsOpen,
+  width = 500,
   children
 }: PropsWithChildren<ModalProps>) => {
   const innerRef = useRef<HTMLDivElement>(null);
@@ -25,7 +26,9 @@ export const Modal = ({
 
   return createPortal(
     <Styled.Overlay>
-      <Styled.Inner ref={innerRef}>{children}</Styled.Inner>
+      <Styled.Inner ref={innerRef} width={width}>
+        {children}
+      </Styled.Inner>
     </Styled.Overlay>,
     document.getElementById("portal-root") as HTMLDivElement
   );
