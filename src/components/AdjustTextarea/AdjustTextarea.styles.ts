@@ -13,7 +13,8 @@ import { AdjustTextareaStyleProps } from "./AdjustTextArea.types";
 const textareaStyle = ({
   fontSize = "paragraph1",
   width,
-  height
+  height,
+  align = "left"
 }: AdjustTextareaStyleProps) => {
   const { colors } = theme;
 
@@ -28,6 +29,7 @@ const textareaStyle = ({
     outline: none;
 
     ${setTypography(fontSize)}
+    text-align: ${align};
     color: ${colors.white};
     white-space: nowrap;
 

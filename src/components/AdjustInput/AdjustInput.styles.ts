@@ -25,7 +25,6 @@ const inputStyle = ({
 
     ${setTypography(fontSize)}
     color: ${colors.white};
-    text-align: center;
   `;
 };
 
