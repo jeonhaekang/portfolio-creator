@@ -6,12 +6,12 @@ import {
   useRef,
   useState
 } from "react";
-import { DashedInputProps } from "./DashedInput.types";
+import { AdjustInputProps } from "./AdjustInput.types";
 
-export const useDashedInput = ({
+export const useAdjustInput = ({
   value,
   onChange
-}: InputHTMLAttributes<HTMLInputElement> & DashedInputProps) => {
+}: InputHTMLAttributes<HTMLInputElement> & AdjustInputProps) => {
   const [width, setWidth] = useState(0);
   const [mirrorValue, setMirrorValue] = useState(value);
 

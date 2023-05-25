@@ -1,13 +1,13 @@
 import { InputHTMLAttributes, forwardRef } from "react";
-import { useDashedInput } from "./DashedInput.hooks";
-import * as Styled from "./DashedInput.styles";
-import { DashedInputProps } from "./DashedInput.types";
+import { useAdjustInput } from "./AdjustInput.hooks";
+import * as Styled from "./AdjustInput.styles";
+import { AdjustInputProps } from "./AdjustInput.types";
 
-export const DashedInput = forwardRef<
+export const AdjustInput = forwardRef<
   HTMLInputElement,
-  InputHTMLAttributes<HTMLInputElement> & DashedInputProps
+  InputHTMLAttributes<HTMLInputElement> & AdjustInputProps
 >((props, ref) => {
-  const app = useDashedInput(props);
+  const app = useAdjustInput(props);
 
   return (
     <>

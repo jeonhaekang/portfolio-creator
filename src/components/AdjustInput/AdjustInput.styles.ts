@@ -2,12 +2,12 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Typography, setTypography, theme } from "@sun-river/components";
 import { hexToRgba } from "~/utils";
-import { DashedInputProps } from "./DashedInput.types";
+import { AdjustInputProps } from "./AdjustInput.types";
 
 const inputStyle = ({
   fontSize = "paragraph1",
   width
-}: DashedInputProps & { width: number }) => {
+}: AdjustInputProps & { width: number }) => {
   const { colors } = theme;
 
   return css`
@@ -23,7 +23,7 @@ const inputStyle = ({
   `;
 };
 
-export const Input = styled.input<DashedInputProps & { width: number }>`
+export const Input = styled.input<AdjustInputProps & { width: number }>`
   ${inputStyle}
 `;
 

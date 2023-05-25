@@ -1,5 +1,5 @@
 import { FontSizeKey } from "@sun-river/components";
 
-export interface DashedInputProps {
+export interface AdjustInputProps {
   fontSize?: FontSizeKey;
 }
