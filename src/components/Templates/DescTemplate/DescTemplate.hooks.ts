@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "~/hooks";
+import { DESC_TEMPLATE_INIT } from "./DescTemplate.constants";
 import { DescTemplateProps } from "./DescTemplate.types";
 
 export const useDescTemplate = ({
@@ -7,8 +8,7 @@ export const useDescTemplate = ({
   defaultValue
 }: DescTemplateProps) => {
   const descForm = useForm({
-    title: "제목을 입력해 주세요",
-    description: "내용을 입력해 주세요",
+    ...DESC_TEMPLATE_INIT,
     ...defaultValue
   });
 
