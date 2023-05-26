@@ -3,13 +3,13 @@ import styled from "@emotion/styled";
 import { flex, position, setSize, theme } from "@sun-river/components";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { hexToRgba } from "~/utils";
-import { FileUploadProps } from "./ImageUpload.types";
+import { ImageUploadStyleProps } from "./ImageUpload.types";
 
-const labelStyle = ({ width, height }: FileUploadProps) => {
+const labelStyle = ({ width, height }: ImageUploadStyleProps) => {
   return css`
     position: relative;
 
-    ${flex.center({ direction: "column" })};
+    ${flex.center()};
 
     ${setSize(`${width}rem`, `${height}rem`)};
 
@@ -17,7 +17,7 @@ const labelStyle = ({ width, height }: FileUploadProps) => {
   `;
 };
 
-export const Label = styled.label<FileUploadProps>`
+export const Label = styled.label<ImageUploadStyleProps>`
   ${labelStyle}
 `;
 

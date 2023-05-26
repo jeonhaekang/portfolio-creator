@@ -1,4 +1,4 @@
-import { Typography } from "@sun-river/components";
+import { FlexCenter, Typography } from "@sun-river/components";
 import { forwardRef } from "react";
 import { IMAGE_EXTENSIONS } from "./ImageUpload.constants";
 import { useImageUpload } from "./ImageUpload.hooks";
@@ -11,10 +11,6 @@ export const ImageUpload = forwardRef<HTMLLabelElement, ImageUploadProps>(
 
     return (
       <Styled.Label ref={ref} width={width} height={height}>
-        <Styled.CloudIcon />
-
-        <Typography color="white">이미지를 업로드 해주세요</Typography>
-
         <Styled.Input
           {...props}
           type="file"
@@ -22,8 +18,14 @@ export const ImageUpload = forwardRef<HTMLLabelElement, ImageUploadProps>(
           onChange={app.onChangeHandler}
         />
 
-        {app.selectedImage && (
+        {app.selectedImage ? (
           <Styled.PreviewImage src={app.selectedImage} alt="선택된 이미지" />
+        ) : (
+          <FlexCenter direction="column">
+            <Styled.CloudIcon />
+
+            <Typography color="white">이미지를 업로드 해주세요</Typography>
+          </FlexCenter>
         )}
       </Styled.Label>
     );
