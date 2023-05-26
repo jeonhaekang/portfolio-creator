@@ -1,9 +1,5 @@
 import { InputHTMLAttributes } from "react";
+import { Size } from "~/types/Common";
 
-export interface ImageUploadStyleProps {
-  width?: number;
-  height?: number;
-}
-
-export type ImageUploadProps = ImageUploadStyleProps &
+export type ImageUploadProps = Size &
   Omit<InputHTMLAttributes<HTMLInputElement>, "width" | "height">;

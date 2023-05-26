@@ -2,10 +2,10 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { flex, position, setSize, theme } from "@sun-river/components";
 import { AiOutlineCloudUpload } from "react-icons/ai";
+import { Size } from "~/types/Common";
 import { hexToRgba } from "~/utils";
-import { ImageUploadStyleProps } from "./ImageUpload.types";
 
-const labelStyle = ({ width, height }: ImageUploadStyleProps) => {
+const labelStyle = ({ width, height }: Size) => {
   return css`
     position: relative;
 
@@ -17,7 +17,7 @@ const labelStyle = ({ width, height }: ImageUploadStyleProps) => {
   `;
 };
 
-export const Label = styled.label<ImageUploadStyleProps>`
+export const Label = styled.label<Size>`
   ${labelStyle}
 `;
 

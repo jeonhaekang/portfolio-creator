@@ -7,15 +7,16 @@ import {
   setTypography,
   theme
 } from "@sun-river/components";
+import { Size } from "~/types/Common";
 import { hexToRgba } from "~/utils";
-import { AdjustTextareaStyleProps } from "./AdjustTextArea.types";
+import { AdjustTextareaProps } from "./AdjustTextArea.types";
 
 const textareaStyle = ({
   fontSize = "paragraph1",
   width,
   height,
   align = "left"
-}: AdjustTextareaStyleProps) => {
+}: AdjustTextareaProps & Size) => {
   const { colors } = theme;
 
   return css`
@@ -39,7 +40,7 @@ const textareaStyle = ({
   `;
 };
 
-export const Textarea = styled.textarea<AdjustTextareaStyleProps>`
+export const Textarea = styled.textarea<AdjustTextareaProps & Size>`
   ${textareaStyle}
 `;
 

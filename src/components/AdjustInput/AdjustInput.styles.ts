@@ -3,20 +3,23 @@ import styled from "@emotion/styled";
 import {
   Typography,
   position,
+  setSize,
   setTypography,
   theme
 } from "@sun-river/components";
+import { Size } from "~/types/Common";
 import { hexToRgba } from "~/utils";
 import { AdjustInputProps } from "./AdjustInput.types";
 
 const inputStyle = ({
   fontSize = "paragraph1",
+  height,
   width
-}: AdjustInputProps & { width: number }) => {
+}: AdjustInputProps & Size) => {
   const { colors } = theme;
 
   return css`
-    width: ${width}px;
+    ${setSize(width, height)}
     box-sizing: content-box;
 
     background-color: transparent;
@@ -28,7 +31,7 @@ const inputStyle = ({
   `;
 };
 
-export const Input = styled.input<AdjustInputProps & { width: number }>`
+export const Input = styled.input<AdjustInputProps & Size>`
   ${inputStyle}
 `;
 

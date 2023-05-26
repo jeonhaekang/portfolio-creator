@@ -9,11 +9,11 @@ import {
 import { AdjustInputProps } from "./AdjustInput.types";
 
 export const useAdjustInput = ({
-  value,
+  defaultValue,
   onChange
 }: InputHTMLAttributes<HTMLInputElement> & AdjustInputProps) => {
-  const [width, setWidth] = useState(0);
-  const [mirrorValue, setMirrorValue] = useState(value);
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  const [mirrorValue, setMirrorValue] = useState(defaultValue);
 
   const mirrorRef = useRef<HTMLSpanElement>(null);
 
@@ -28,7 +28,11 @@ export const useAdjustInput = ({
   );
 
   const adjustWidth = useCallback(() => {
-    mirrorRef.current && setWidth(mirrorRef.current.clientWidth);
+    if (mirrorRef.current) {
+      const { clientWidth: width, clientHeight: height } = mirrorRef.current;
+
+      setSize({ width, height });
+    }
   }, []);
 
   useEffect(() => {
@@ -44,7 +48,7 @@ export const useAdjustInput = ({
   }, [adjustWidth]);
 
   return {
-    width,
+    size,
     onChangeHandler,
     mirrorRef,
     mirrorValue

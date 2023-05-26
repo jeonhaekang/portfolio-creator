@@ -12,9 +12,9 @@ export const AdjustInput = forwardRef<
   return (
     <>
       <Styled.Input
-        {...props}
         ref={ref}
-        width={app.width}
+        {...props}
+        {...app.size}
         onChange={app.onChangeHandler}
       />
 

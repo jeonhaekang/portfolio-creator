@@ -5,8 +5,3 @@ export interface AdjustTextareaProps {
   fontSize?: FontSizeKey;
   align?: CSSProperties["textAlign"];
 }
-
-export interface AdjustTextareaStyleProps extends AdjustTextareaProps {
-  width: number;
-  height: number;
-}
