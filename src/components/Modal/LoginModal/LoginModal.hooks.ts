@@ -11,7 +11,7 @@ export const useLoginForm = () => {
 
   const loginModal = useModal(state => state.modals[LOGIN_FORM_MODAL]);
 
-  const [loginFormData, loginFormController, isLoginFormValid] = useForm({
+  const loginForm = useForm({
     email: "",
     password: ""
   });
@@ -29,15 +29,13 @@ export const useLoginForm = () => {
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
 
-      loginUser.mutate(loginFormData);
+      loginUser.mutate(loginForm.data);
     },
-    [loginFormData, loginUser]
+    [loginForm.data, loginUser]
   );
 
   return {
-    loginFormData,
-    loginFormController,
-    isLoginFormValid,
-    requestLogin
+    requestLogin,
+    loginForm
   };
 };

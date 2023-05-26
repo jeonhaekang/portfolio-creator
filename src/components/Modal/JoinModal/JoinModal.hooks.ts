@@ -11,7 +11,7 @@ export const useJoinForm = () => {
 
   const joinModal = useModal(state => state.modals[JOIN_FORM_MODAL]);
 
-  const [joinFormData, joinFormController, isJoinFormValid] = useForm({
+  const joinForm = useForm({
     email: "",
     password: ""
   });
@@ -31,14 +31,13 @@ export const useJoinForm = () => {
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
 
-      createUser.mutate(joinFormData);
+      createUser.mutate(joinForm.data);
     },
-    [createUser, joinFormData]
+    [createUser, joinForm.data]
   );
 
   return {
     requestCreateUser,
-    joinFormController,
-    isJoinFormValid
+    joinForm
   };
 };
