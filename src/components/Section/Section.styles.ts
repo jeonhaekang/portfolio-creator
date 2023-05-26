@@ -17,6 +17,8 @@ const baseStyle = ({
     ${full && setSize({ minHeight: "100vh" })}
     overflow-x: hidden;
 
+    padding: 3rem 2rem;
+
     background-color: ${colors[color]};
   `;
 };

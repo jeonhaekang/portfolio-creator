@@ -1,0 +1,1 @@
+export const MAIN_TEMPLATE = "MAIN_TEMPLATE";
