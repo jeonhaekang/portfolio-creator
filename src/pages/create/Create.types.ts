@@ -3,7 +3,6 @@ import {
   DESC_TEMPLATE_TYPE,
   DescTemplateForm
 } from "~/components/Templates/DescTemplate";
-import { SetStateType } from "~/types/Common";
 
 export interface MainSection {
   id: string;
@@ -22,6 +21,6 @@ export type Section = MainSection | DescSection;
 export type SectionTypes = Section["type"];
 
 export interface CreateValues {
-  sections: Section[];
-  setSections: SetStateType<Section[]>;
+  setSections: (callback: (sections: Section[]) => typeof sections) => void;
+  requestRender: VoidFunction;
 }

@@ -5,15 +5,17 @@ import { useCreateContext } from "~/pages/create/index.page";
 import { TEMPLATE_INIT_MAP } from "./AddTemplate.constants";
 
 export const useAddTemplate = () => {
-  const { setSections } = useCreateContext();
+  const { setSections, requestRender } = useCreateContext();
 
   const addSection = useCallback(
     (type: SectionTypes) => {
       const data = TEMPLATE_INIT_MAP[type];
 
       setSections(prev => [...prev, { id: uuid(), type, data }]);
+
+      requestRender();
     },
-    [setSections]
+    [requestRender, setSections]
   );
 
   return { addSection };

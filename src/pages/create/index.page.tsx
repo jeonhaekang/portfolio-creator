@@ -1,4 +1,12 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { Button } from "@sun-river/components";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState
+} from "react";
 import { v4 as uuid } from "uuid";
 import {
   AddTemplate,
@@ -11,26 +19,53 @@ import { CreateValues, Section } from "./Create.types";
 const CreateContext = createContext<CreateValues | null>(null);
 
 const Create = () => {
-  const [sections, setSections] = useState<Section[]>([
+  const [, setRenderHash] = useState("");
+
+  const sections = useRef<Section[]>([
     { id: uuid(), type: MAIN_TEMPLATE_TYPE, data: MAIN_TEMPLATE_INIT }
   ]);
 
+  const setSections = useCallback(
+    (callback: (_sections: Section[]) => typeof _sections) => {
+      const __sections = callback(sections.current);
+
+      sections.current = __sections;
+    },
+    []
+  );
+
+  const requestRender = useCallback(() => {
+    setRenderHash(JSON.stringify(sections.current));
+  }, []);
+
   const values = useMemo(
     () => ({
-      sections,
-      setSections
+      setSections,
+      requestRender
     }),
-    [sections]
+    [requestRender, setSections]
   );
 
   return (
     <CreateContext.Provider value={values}>
-      {sections.map(({ id, type }) => {
+      {sections.current.map(({ id, type }) => {
         const Section = TEMPLATE_COMPONENT_MAP[type];
 
-        return <Section key={id} />;
+        return (
+          <Section
+            key={id}
+            onChange={formData => {
+              setSections(
+                prev =>
+                  prev.map(section =>
+                    section.id === id ? { ...section, data: formData } : section
+                  ) as Section[]
+              );
+            }}
+          />
+        );
       })}
-
+      <Button onClick={() => console.log(sections.current)}>보기</Button>
       <AddTemplate />
     </CreateContext.Provider>
   );
