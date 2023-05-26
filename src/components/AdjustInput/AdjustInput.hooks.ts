@@ -9,11 +9,11 @@ import {
 import { AdjustInputProps } from "./AdjustInput.types";
 
 export const useAdjustInput = ({
-  defaultValue,
+  value,
   onChange
 }: InputHTMLAttributes<HTMLInputElement> & AdjustInputProps) => {
   const [size, setSize] = useState({ width: 0, height: 0 });
-  const [mirrorValue, setMirrorValue] = useState(defaultValue);
+  const [mirrorValue, setMirrorValue] = useState(value);
 
   const mirrorRef = useRef<HTMLSpanElement>(null);
 

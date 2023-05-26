@@ -10,10 +10,10 @@ import { AdjustTextareaProps } from "./AdjustTextArea.types";
 
 export const useAdjustTextarea = ({
   onChange,
-  defaultValue
+  value
 }: TextareaHTMLAttributes<HTMLTextAreaElement> & AdjustTextareaProps) => {
   const [size, setSize] = useState({ width: 0, height: 0 });
-  const [mirrorValue, setMirrorValue] = useState(defaultValue);
+  const [mirrorValue, setMirrorValue] = useState(value);
 
   const mirrorRef = useRef<HTMLSpanElement>(null);
 

@@ -5,13 +5,14 @@ import { useImageUpload } from "./ImageUpload.hooks";
 import * as Styled from "./ImageUpload.styles";
 import { ImageUploadProps } from "./ImageUpload.types";
 
-export const ImageUpload = forwardRef<HTMLLabelElement, ImageUploadProps>(
+export const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
   ({ width, height, ...props }, ref) => {
     const app = useImageUpload(props);
 
     return (
-      <Styled.Label ref={ref} width={width} height={height}>
+      <Styled.Label width={width} height={height}>
         <Styled.Input
+          ref={ref}
           {...props}
           type="file"
           accept={IMAGE_EXTENSIONS.join(",")}

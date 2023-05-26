@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { JoinModal } from "~/components/Modal/JoinModal";
 import { LoginModal } from "~/components/Modal/LoginModal";
 import { useMainHeader } from "./MainHeader.hooks";
@@ -13,9 +14,14 @@ export const MainHeader = () => {
 
         <Styled.Menus>
           {app.user === "member" && (
-            <Styled.MenuButton onClick={app.requestLogoutUser}>
-              Logout
-            </Styled.MenuButton>
+            <>
+              <Link href="/create">
+                <Styled.MenuButton>Create</Styled.MenuButton>
+              </Link>
+              <Styled.MenuButton onClick={app.requestLogoutUser}>
+                Logout
+              </Styled.MenuButton>
+            </>
           )}
 
           {app.user === "guest" && (
