@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 import { MAIN_TEMPLATE_INIT, MAIN_TEMPLATE_TYPE } from "~/components";
 import { uploadFile } from "~/state/server/file";
 import { useCreatePortfolio } from "~/state/server/portfolio/mutations";
-import { Section } from "./Create.types";
+import { PortfolioSection } from "~/types/Portfolio";
 
 export const useCreate = () => {
   const { alert } = useDialog();
@@ -24,7 +24,7 @@ export const useCreate = () => {
 
   const [, setRenderHash] = useState("");
 
-  const sections = useRef<Section[]>([
+  const sections = useRef<PortfolioSection[]>([
     {
       id: uuid(),
       bgColor: "coral",
@@ -34,7 +34,7 @@ export const useCreate = () => {
   ]);
 
   const setSections = useCallback(
-    (callback: (_sections: Section[]) => typeof _sections) => {
+    (callback: (_sections: PortfolioSection[]) => typeof _sections) => {
       const __sections = callback(sections.current);
 
       sections.current = __sections;
@@ -45,6 +45,22 @@ export const useCreate = () => {
   const requestRender = useCallback(() => {
     setRenderHash(JSON.stringify(sections.current));
   }, []);
+
+  const getTemplateAttributes = useCallback(
+    (id: string) => ({
+      key: id,
+      id,
+      onChange: (formData: PortfolioSection["data"]) => {
+        setSections(
+          prev =>
+            prev.map(section =>
+              section.id === id ? { ...section, data: formData } : section
+            ) as PortfolioSection[]
+        );
+      }
+    }),
+    [setSections]
+  );
 
   const fileUpload = useCallback(async (obj: Record<string, any>) => {
     const entries = Object.entries(obj);
@@ -71,7 +87,7 @@ export const useCreate = () => {
   const createPortfolio = useCallback(async () => {
     const updated = (await Promise.all(
       sections.current.map(section => fileUpload(section))
-    )) as Section[];
+    )) as PortfolioSection[];
 
     portfolio.mutate(updated);
   }, [fileUpload, portfolio]);
@@ -84,5 +100,11 @@ export const useCreate = () => {
     [requestRender, setSections]
   );
 
-  return { values, sections, setSections, createPortfolio };
+  return {
+    values,
+    sections,
+    setSections,
+    createPortfolio,
+    getTemplateAttributes
+  };
 };

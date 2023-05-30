@@ -1,11 +1,11 @@
-export interface MainTemplateForm {
-  image?: string | File;
-  title?: string;
-  description?: string;
+import { MainSection } from "~/types/Portfolio";
+
+export interface MainTemplate extends Omit<MainSection, "image"> {
+  image: string | File;
 }
 
 export interface MainTemplateProps {
   id: string;
-  defaultValue?: MainTemplateForm;
-  onChange?: (data: MainTemplateForm) => void;
+  defaultValue?: MainTemplate;
+  onChange?: (data: MainTemplate) => void;
 }

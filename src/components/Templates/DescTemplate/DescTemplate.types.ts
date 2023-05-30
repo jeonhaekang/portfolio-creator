@@ -1,10 +1,7 @@
-export interface DescTemplateForm {
-  title: string;
-  description: string;
-}
+import { DescSection } from "~/types/Portfolio";
 
 export interface DescTemplateProps {
   id: string;
-  defaultValue?: DescTemplateForm;
-  onChange?: (data: DescTemplateForm) => void;
+  defaultValue?: DescSection;
+  onChange?: (data: DescSection) => void;
 }
