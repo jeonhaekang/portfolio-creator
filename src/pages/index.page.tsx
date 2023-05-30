@@ -1,6 +1,6 @@
 import { Typography } from "@sun-river/components";
 import { MainHeader } from "~/components";
-import { Section } from "~/components/Section";
+import { Section } from "~/components/Sections";
 
 export default function Home() {
   return (
