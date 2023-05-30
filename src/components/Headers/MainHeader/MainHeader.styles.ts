@@ -12,6 +12,8 @@ export const Container = styled.header`
   ${position.sticky({ top: 0, left: 0 })}
 
   ${setSize("100%", 0)}
+
+  z-index: 100;
 `;
 
 export const Contents = styled.div`
