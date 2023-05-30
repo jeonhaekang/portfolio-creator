@@ -11,7 +11,7 @@ export const useMainHeader = () => {
     joinModal: state.modals[JOIN_FORM_MODAL]
   }));
 
-  const user = useAccount(state => state.user);
+  const userType = useAccount(state => state.user.type);
 
   const logoutUser = useLogoutUser();
 
@@ -23,6 +23,6 @@ export const useMainHeader = () => {
     loginModal,
     joinModal,
     requestLogoutUser,
-    user
+    userType
   };
 };

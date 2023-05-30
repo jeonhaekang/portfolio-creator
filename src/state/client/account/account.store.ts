@@ -2,10 +2,13 @@ import { create } from "zustand";
 import { AccountState, InitialState } from "./account.types";
 
 const initialState: InitialState = {
-  user: "none"
+  user: {
+    type: "none",
+    data: null
+  }
 };
 
 export const useAccount = create<AccountState>(set => ({
   ...initialState,
-  setState: user => set({ user })
+  setUser: user => set({ user })
 }));

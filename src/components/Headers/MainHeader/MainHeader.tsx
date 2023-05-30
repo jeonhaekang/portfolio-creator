@@ -13,7 +13,7 @@ export const MainHeader = () => {
         <Styled.Title>PortfolioCreator</Styled.Title>
 
         <Styled.Menus>
-          {app.user === "member" && (
+          {app.userType === "member" && (
             <>
               <Link href="/create">
                 <Styled.MenuButton>Create</Styled.MenuButton>
@@ -24,7 +24,7 @@ export const MainHeader = () => {
             </>
           )}
 
-          {app.user === "guest" && (
+          {app.userType === "guest" && (
             <>
               <Styled.MenuButton onClick={app.loginModal.controller.on}>
                 Login

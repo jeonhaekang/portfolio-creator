@@ -10,11 +10,13 @@ import "../styles/font-face.css";
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
-  const setUserState = useAccount(state => state.setState);
+  const setUser = useAccount(state => state.setUser);
 
   useEffect(() => {
-    observeLoginState(user => setUserState(user ? "member" : "guest"));
-  }, [setUserState]);
+    observeLoginState(data =>
+      setUser({ type: data ? "member" : "guest", data })
+    );
+  }, [setUser]);
 
   return (
     <QueryClientProvider client={queryClient}>
