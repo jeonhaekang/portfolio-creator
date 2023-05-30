@@ -1,5 +1,5 @@
 export interface MainTemplateForm {
-  image?: string;
+  image?: string | File;
   title?: string;
   description?: string;
 }

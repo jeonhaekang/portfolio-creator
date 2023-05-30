@@ -59,7 +59,7 @@ export const useForm = <T extends FormValues>(initValues: T) => {
           el && formItems.current.set(name as string, el);
         },
         onChange: setValue,
-        value: withValue ? data[name] : undefined
+        value: withValue ? (data[name] as string) : undefined
       };
 
       return properties;

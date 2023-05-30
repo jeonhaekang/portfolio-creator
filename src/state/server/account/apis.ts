@@ -29,6 +29,10 @@ export const logoutUser = async () => {
   await signOut(auth);
 };
 
+export const getCurrentUser = () => {
+  return auth.currentUser;
+};
+
 export const observeLoginState = (
   onChange: NextOrObserver<User>,
   onError?: ErrorFn
