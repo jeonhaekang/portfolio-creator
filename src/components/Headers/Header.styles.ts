@@ -6,7 +6,7 @@ import {
   setTypography,
   theme
 } from "@sun-river/components";
-import { MAIN_HEADER_HEIGHT } from "./MainHeader.constants";
+import { MAIN_HEADER_HEIGHT } from "./MainHeader/MainHeader.constants";
 
 export const Container = styled.header`
   ${position.sticky({ top: 0, left: 0 })}

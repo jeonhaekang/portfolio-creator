@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { JoinModal } from "~/components/Modal/JoinModal";
-import { LoginModal } from "~/components/Modal/LoginModal";
+import { JoinModal, LoginModal } from "~/components";
+import * as Styled from "../Header.styles";
 import { useMainHeader } from "./MainHeader.hooks";
-import * as Styled from "./MainHeader.styles";
 
 export const MainHeader = () => {
   const app = useMainHeader();
