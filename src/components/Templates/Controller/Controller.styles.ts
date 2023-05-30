@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
-import { flex, position, setSelectorStyle, theme } from "@sun-river/components";
+import { position, setSelectorStyle, theme } from "@sun-river/components";
 
 export const Controller = styled.div`
   ${position.absolute({ right: "2rem", bottom: "2rem" })}
 
-  ${flex({ gap: 6 })}
+  display: flex;
 
-  padding: 0.7rem;
+  padding: 0.3rem 0.6rem;
 
   background-color: ${theme.colors.white};
 
