@@ -1,5 +1,4 @@
-import { MainSection } from "~/components";
-import { SECTION_COMPONENT_MAP } from "./Portfolio.constants";
+import { DESC_TEMPLATE_TYPE, DescSection, MainSection } from "~/components";
 import { usePortfolio } from "./Portfolio.hooks";
 
 const Portfolio = () => {
@@ -11,13 +10,19 @@ const Portfolio = () => {
 
   return (
     <>
-      {app.portfolio.sections.map(({ type, data }) => {
-        const Section = SECTION_COMPONENT_MAP[type];
+      {app.portfolio.sections.map(({ type, id, bgColor, data }) => {
+        const attributes = {
+          key: id,
+          id,
+          bgColor
+        };
 
-        if (type === "MAIN_TEMPLATE") {
-          return <MainSection {...data} />;
+        switch (type) {
+          case DESC_TEMPLATE_TYPE:
+            return <DescSection {...attributes} {...data} />;
+          default:
+            return <MainSection {...attributes} {...data} />;
         }
-        return null;
       })}
     </>
   );

@@ -33,5 +33,5 @@ export type PortfolioSectionType = PortfolioSection["type"];
 
 export interface PortfolioPayload {
   uid: string;
-  sections: PortfolioSection;
+  sections: PortfolioSection[];
 }
