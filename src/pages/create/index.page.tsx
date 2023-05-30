@@ -25,7 +25,9 @@ export default function Create() {
         }
       })}
 
-      <Button onClick={app.createPortfolio}>작성완료!</Button>
+      <Button size="large" onClick={app.createPortfolio}>
+        작성완료!
+      </Button>
       <AddTemplate />
     </CreateContext.Provider>
   );

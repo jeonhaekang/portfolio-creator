@@ -10,7 +10,7 @@ import {
 } from "@sun-river/components";
 
 export const ColorPicker = styled.ul`
-  ${position.posCenterX({ position: "absolute", top: "2rem" })}
+  ${position.posCenterX({ position: "absolute", bottom: "2rem" })}
 
   ${flex({ gap: "0.5rem" })};
 
