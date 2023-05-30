@@ -30,7 +30,13 @@ export const logoutUser = async () => {
 };
 
 export const getCurrentUser = () => {
-  return auth.currentUser;
+  const user = auth.currentUser;
+
+  if (!user) {
+    throw Error("not login user");
+  }
+
+  return user;
 };
 
 export const observeLoginState = (

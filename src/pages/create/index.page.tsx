@@ -30,7 +30,7 @@ export default function Create() {
           />
         );
       })}
-      <Button onClick={app.requestUpload}>작성완료!</Button>
+      <Button onClick={app.createPortfolio}>작성완료!</Button>
       <AddTemplate />
     </CreateContext.Provider>
   );

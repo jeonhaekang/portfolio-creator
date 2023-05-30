@@ -1,13 +1,27 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
+import { useDialog } from "@sun-river/components";
+import { useRouter } from "next/router";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { MAIN_TEMPLATE_INIT, MAIN_TEMPLATE_TYPE } from "~/components";
 import { uploadFile } from "~/state/server/file";
+import { useCreatePortfolio } from "~/state/server/portfolio/mutations";
 import { Section } from "./Create.types";
 
 export const useCreate = () => {
+  const { alert } = useDialog();
+  const { replace } = useRouter();
+
+  const portfolio = useCreatePortfolio({
+    onSuccess: async () => {
+      await alert({ message: "포트폴리오 생성에 성공하였습니다 !!" });
+
+      replace("/");
+    },
+    onError: () => {
+      alert({ message: "포트폴리오 생성에 실패하였습니다." });
+    }
+  });
+
   const [, setRenderHash] = useState("");
 
   const sections = useRef<Section[]>([
@@ -54,13 +68,13 @@ export const useCreate = () => {
     return result;
   }, []);
 
-  const requestUpload = useCallback(async () => {
-    const updated = await Promise.all(
+  const createPortfolio = useCallback(async () => {
+    const updated = (await Promise.all(
       sections.current.map(section => fileUpload(section))
-    );
+    )) as Section[];
 
-    console.log(updated);
-  }, [fileUpload]);
+    portfolio.mutate(updated);
+  }, [fileUpload, portfolio]);
 
   const values = useMemo(
     () => ({
@@ -70,5 +84,5 @@ export const useCreate = () => {
     [requestRender, setSections]
   );
 
-  return { values, sections, setSections, requestUpload };
+  return { values, sections, setSections, createPortfolio };
 };

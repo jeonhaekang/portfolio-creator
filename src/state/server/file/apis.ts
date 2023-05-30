@@ -14,9 +14,7 @@ export const uploadFile = async ({ file, route }: FilePayload) => {
   const _route = [route];
 
   const user = getCurrentUser();
-  if (user) {
-    _route.push(user.uid);
-  }
+  _route.push(user.uid);
 
   const now = new Date().getTime();
   _route.push(`${now}_${name}`);
