@@ -34,7 +34,7 @@ export const MainTemplate = (props: MainTemplateProps) => {
         />
       </FlexCenter>
 
-      <BgColorPicker />
+      <BgColorPicker id={props.id} />
       <Controller id={props.id} />
     </Section>
   );

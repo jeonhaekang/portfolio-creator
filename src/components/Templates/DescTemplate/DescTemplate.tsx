@@ -26,7 +26,7 @@ export const DescTemplate = (props: DescTemplateProps) => {
         />
       </FlexColumn>
 
-      <BgColorPicker />
+      <BgColorPicker id={props.id} />
       <Controller id={props.id} />
     </Section>
   );

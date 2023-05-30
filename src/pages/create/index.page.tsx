@@ -23,7 +23,12 @@ export default function Create() {
   const [, setRenderHash] = useState("");
 
   const sections = useRef<Section[]>([
-    { id: uuid(), type: MAIN_TEMPLATE_TYPE, data: MAIN_TEMPLATE_INIT }
+    {
+      id: uuid(),
+      bgColor: "coral",
+      type: MAIN_TEMPLATE_TYPE,
+      data: MAIN_TEMPLATE_INIT
+    }
   ]);
 
   const setSections = useCallback(
