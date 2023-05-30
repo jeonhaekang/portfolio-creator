@@ -1,8 +1,12 @@
 import { FlexCenter } from "@sun-river/components";
-import { AdjustInput } from "~/components/AdjustInput";
-import { AdjustTextarea } from "~/components/AdjustTextarea";
-import { ImageUpload } from "~/components/ImageUpload";
-import { Section } from "~/components/Section";
+import {
+  AdjustInput,
+  AdjustTextarea,
+  BgColorPicker,
+  Controller,
+  ImageUpload,
+  Section
+} from "~/components";
 import { useMainTemplate } from "./MainTemplate.hooks";
 import { MainTemplateProps } from "./MainTemplate.types";
 
@@ -29,6 +33,9 @@ export const MainTemplate = (props: MainTemplateProps) => {
           {...mainForm.controller.register("description")}
         />
       </FlexCenter>
+
+      <BgColorPicker />
+      <Controller id={props.id} />
     </Section>
   );
 };

@@ -4,6 +4,7 @@ export interface DescTemplateForm {
 }
 
 export interface DescTemplateProps {
+  id: string;
   defaultValue?: DescTemplateForm;
   onChange?: (data: DescTemplateForm) => void;
 }

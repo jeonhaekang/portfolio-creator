@@ -5,6 +5,7 @@ export interface MainTemplateForm {
 }
 
 export interface MainTemplateProps {
+  id: string;
   defaultValue?: MainTemplateForm;
   onChange?: (data: MainTemplateForm) => void;
 }

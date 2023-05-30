@@ -1,1 +1,2 @@
-export { Section } from "./Section";
+export * from "./BgColorPicker";
+export { Section } from "./Section.contexts";

@@ -11,14 +11,15 @@ import { v4 as uuid } from "uuid";
 import {
   AddTemplate,
   MAIN_TEMPLATE_INIT,
-  MAIN_TEMPLATE_TYPE
+  MAIN_TEMPLATE_TYPE,
+  MainTemplate
 } from "~/components";
 import { TEMPLATE_COMPONENT_MAP } from "./Create.constants";
 import { CreateValues, Section } from "./Create.types";
 
 const CreateContext = createContext<CreateValues | null>(null);
 
-const Create = () => {
+export default function Create() {
   const [, setRenderHash] = useState("");
 
   const sections = useRef<Section[]>([
@@ -49,11 +50,12 @@ const Create = () => {
   return (
     <CreateContext.Provider value={values}>
       {sections.current.map(({ id, type }) => {
-        const Section = TEMPLATE_COMPONENT_MAP[type];
+        const Section = TEMPLATE_COMPONENT_MAP[type] || MainTemplate;
 
         return (
           <Section
             key={id}
+            id={id}
             onChange={formData => {
               setSections(
                 prev =>
@@ -69,9 +71,7 @@ const Create = () => {
       <AddTemplate />
     </CreateContext.Provider>
   );
-};
-
-export default Create;
+}
 
 export const useCreateContext = () => {
   const createContext = useContext(CreateContext);

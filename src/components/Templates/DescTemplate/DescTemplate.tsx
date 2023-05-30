@@ -1,5 +1,11 @@
 import { FlexColumn } from "@sun-river/components";
-import { AdjustInput, AdjustTextarea, Section } from "~/components";
+import {
+  AdjustInput,
+  AdjustTextarea,
+  BgColorPicker,
+  Controller,
+  Section
+} from "~/components";
 import { useDescTemplate } from "./DescTemplate.hooks";
 import { DescTemplateProps } from "./DescTemplate.types";
 
@@ -19,6 +25,9 @@ export const DescTemplate = (props: DescTemplateProps) => {
           {...descForm.controller.register("description")}
         />
       </FlexColumn>
+
+      <BgColorPicker />
+      <Controller id={props.id} />
     </Section>
   );
 };

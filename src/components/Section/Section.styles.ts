@@ -12,6 +12,8 @@ const baseStyle = ({
   const { colors } = theme;
 
   return css`
+    position: relative;
+
     ${center && flex.center({ direction: "column" })}
 
     ${full && setSize({ minHeight: "100vh" })}
