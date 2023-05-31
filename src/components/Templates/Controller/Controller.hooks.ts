@@ -1,15 +1,17 @@
 import { useDialog } from "@sun-river/components";
+import _ from "lodash";
 import { useCallback } from "react";
 import { useCreateContext } from "~/pages/create/index.page";
 import { ControllerProps } from "./Controller.types";
 
 export const useController = ({ id }: ControllerProps) => {
   const { alert } = useDialog();
-  const { setSections, requestRender } = useCreateContext();
+  const { setPortfolio, requestRender } = useCreateContext();
 
   const onUpHandler = useCallback(() => {
-    setSections(sections => {
-      const _sections = [...sections];
+    setPortfolio(portfolio => {
+      const _portfolio = _.cloneDeep(portfolio);
+      const _sections = _portfolio.sections;
 
       const idx = _sections.findIndex(section => section.id === id);
 
@@ -20,45 +22,48 @@ export const useController = ({ id }: ControllerProps) => {
         ];
       }
 
-      return _sections;
+      return _portfolio;
     });
 
     requestRender();
-  }, [id, requestRender, setSections]);
+  }, [id, requestRender, setPortfolio]);
 
   const onDownHandler = useCallback(() => {
-    setSections(sections => {
-      const _sections = [...sections];
+    setPortfolio(portfolio => {
+      const _portfolio = _.cloneDeep(portfolio);
+      const _sections = _portfolio.sections;
 
       const idx = _sections.findIndex(section => section.id === id);
 
-      if (idx < sections.length - 1) {
+      if (idx < _sections.length - 1) {
         [_sections[idx + 1], _sections[idx]] = [
           _sections[idx],
           _sections[idx + 1]
         ];
       }
 
-      return _sections;
+      return _portfolio;
     });
 
     requestRender();
-  }, [id, requestRender, setSections]);
+  }, [id, requestRender, setPortfolio]);
 
   const onRemoveHandler = useCallback(() => {
-    setSections(sections => {
-      if (sections.length <= 1) {
+    setPortfolio(portfolio => {
+      const _portfolio = _.cloneDeep(portfolio);
+      const _sections = _portfolio.sections;
+
+      if (_sections.length <= 1) {
         alert({ message: "최소 1개 이상의 섹션이 있어야 합니다." });
-
-        return sections;
+      } else {
+        _portfolio.sections = _sections.filter(section => section.id !== id);
       }
-      const deleted = sections.filter(section => section.id !== id);
 
-      return deleted;
+      return _portfolio;
     });
 
     requestRender();
-  }, [alert, id, requestRender, setSections]);
+  }, [alert, id, requestRender, setPortfolio]);
 
   return {
     onUpHandler,

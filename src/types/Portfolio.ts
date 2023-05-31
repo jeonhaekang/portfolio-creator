@@ -35,3 +35,10 @@ export interface PortfolioPayload {
   uid: string;
   sections: PortfolioSection[];
 }
+
+export interface Portfolio {
+  header: {
+    title: string;
+  };
+  sections: PortfolioSection[];
+}

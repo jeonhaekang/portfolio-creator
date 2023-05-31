@@ -6,6 +6,7 @@ import {
   DescTemplate,
   MainTemplate
 } from "~/components";
+import { CreateHeader } from "~/components/Headers/CreateHeader";
 import { useCreate } from "./Create.hooks";
 import { CreateValues } from "./Create.types";
 
@@ -16,7 +17,9 @@ export default function Create() {
 
   return (
     <CreateContext.Provider value={app.values}>
-      {app.sections.current.map(({ id, type }) => {
+      <CreateHeader />
+
+      {app.portfolio.current.sections.map(({ id, type }) => {
         switch (type) {
           case DESC_TEMPLATE_TYPE:
             return <DescTemplate {...app.getTemplateAttributes(id)} />;
@@ -25,9 +28,8 @@ export default function Create() {
         }
       })}
 
-      <Button size="large" onClick={app.createPortfolio}>
-        작성완료!
-      </Button>
+      <Button onClick={app.requestCreatePortfolio}>생성</Button>
+
       <AddTemplate />
     </CreateContext.Provider>
   );

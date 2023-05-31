@@ -1,21 +1,33 @@
+import _ from "lodash";
 import { useCallback } from "react";
 import { v4 as uuid } from "uuid";
-import { SectionTypes } from "~/pages/create/Create.types";
 import { useCreateContext } from "~/pages/create/index.page";
+import { PortfolioSection, PortfolioSectionType } from "~/types/Portfolio";
 import { TEMPLATE_INIT_MAP } from "./AddTemplate.constants";
 
 export const useAddTemplate = () => {
-  const { setSections, requestRender } = useCreateContext();
+  const { setPortfolio, requestRender } = useCreateContext();
 
   const addSection = useCallback(
-    (type: SectionTypes) => {
-      const data = TEMPLATE_INIT_MAP[type];
+    (type: PortfolioSectionType) => {
+      setPortfolio(portfolio => {
+        const _portfolio = _.cloneDeep(portfolio);
 
-      setSections(prev => [...prev, { id: uuid(), type, data }]);
+        const newSection = {
+          id: uuid(),
+          bgColor: "coral",
+          type,
+          data: TEMPLATE_INIT_MAP[type]
+        } as PortfolioSection;
+
+        _portfolio.sections.push(newSection);
+
+        return _portfolio;
+      });
 
       requestRender();
     },
-    [requestRender, setSections]
+    [requestRender, setPortfolio]
   );
 
   return { addSection };

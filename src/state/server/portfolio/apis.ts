@@ -1,17 +1,14 @@
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
-import { PortfolioPayload, PortfolioSection } from "~/types/Portfolio";
+import { Portfolio, PortfolioPayload } from "~/types/Portfolio";
 import { getCurrentUser } from "../account";
 import { firebaseApp } from "../firebaseConfig";
 
 const db = getFirestore(firebaseApp);
 
-export const createPortfolio = async (sections: PortfolioSection[]) => {
+export const createPortfolio = async (portfolio: Portfolio) => {
   const { uid } = getCurrentUser();
 
-  const response = await setDoc(doc(db, "portfolio", uid), {
-    uid,
-    sections
-  });
+  const response = await setDoc(doc(db, "portfolio", uid), portfolio);
 
   return response;
 };

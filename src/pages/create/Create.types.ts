@@ -1,8 +1,7 @@
-import { PortfolioSection } from "~/types/Portfolio";
+import { Portfolio } from "~/types/Portfolio";
 
 export interface CreateValues {
-  setSections: (
-    callback: (sections: PortfolioSection[]) => typeof sections
-  ) => void;
+  getPortfolio: () => Portfolio;
+  setPortfolio: (callback: (portfolio: Portfolio) => typeof portfolio) => void;
   requestRender: VoidFunction;
 }
