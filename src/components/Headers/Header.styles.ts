@@ -22,6 +22,7 @@ export const Contents = styled.div`
   ${setSize({ width: "100%", height: MAIN_HEADER_HEIGHT })}
 
   background-color: transparent;
+  backdrop-filter: blur(6px);
 
   padding: 0 1.5rem;
 `;
