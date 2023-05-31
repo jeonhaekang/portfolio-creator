@@ -1,6 +1,7 @@
 export const CARD_TEMPLATE_TYPE = "CARD_TEMPLATE";
 
 export const CARD_INIT = {
+  image: "",
   title: "제목을 입력해 주세요",
   subTitle: "부제를 입력해 주세요.",
   description: "내용을 입력해 주세요.",

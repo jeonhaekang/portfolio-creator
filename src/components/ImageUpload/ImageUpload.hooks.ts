@@ -1,14 +1,22 @@
 import { useDialog } from "@sun-river/components";
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { IMAGE_EXTENSIONS } from "./ImageUpload.constants";
 import { ImageUploadProps } from "./ImageUpload.types";
 
 export const useImageUpload = ({ value, onChange }: ImageUploadProps) => {
   const { alert } = useDialog();
 
-  const [selectedImage, setSelectedImage] = useState<null | string>(
-    value || null
-  );
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const setSelectedImageToUrl = useCallback((file: string | File) => {
+    let _file = file;
+
+    if (_file instanceof File) {
+      _file = URL.createObjectURL(_file);
+    }
+
+    setSelectedImage(_file);
+  }, []);
 
   const onChangeHandler = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -26,13 +34,16 @@ export const useImageUpload = ({ value, onChange }: ImageUploadProps) => {
         return;
       }
 
-      const fileUrl = URL.createObjectURL(files[0]);
-      setSelectedImage(fileUrl);
+      setSelectedImageToUrl(files[0]);
 
       onChange && onChange(event);
     },
-    [alert, onChange]
+    [alert, onChange, setSelectedImageToUrl]
   );
+
+  useEffect(() => {
+    value ? setSelectedImageToUrl(value) : setSelectedImage(null);
+  }, [value, setSelectedImageToUrl]);
 
   return {
     selectedImage,

@@ -7,6 +7,7 @@ import { CardTemplateProps } from "./CardTemplate.types";
 
 export const CardTemplate = (props: CardTemplateProps) => {
   const { cardFrom, ...app } = useCardTemplate(props);
+
   return (
     <Section color={CARD_TEMPLATE_DEFAULT.bgColor}>
       <FlexColumn gap={24}>
