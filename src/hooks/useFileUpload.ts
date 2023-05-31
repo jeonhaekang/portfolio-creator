@@ -12,6 +12,8 @@ export const useFileUpload = () => {
         const downloadUrl = await uploadFile({ file: value, route: "images" });
 
         _acc[key] = downloadUrl;
+      } else if (Array.isArray(value)) {
+        _acc[key] = await Promise.all(value.map(item => upload(item)));
       } else if (typeof value === "object" && value !== null) {
         _acc[key] = await upload(value);
       } else {
