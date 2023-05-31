@@ -1,14 +1,17 @@
 import { AdjustInput } from "~/components/AdjustInput";
-import { useCreateContext } from "~/pages/create/index.page";
 import * as Styled from "../Header.styles";
+import { useCreateHeader } from "./CreateHeader.hooks";
 
 export const CreateHeader = () => {
-  const app = useCreateContext();
+  const app = useCreateHeader();
 
   return (
     <Styled.Container>
       <Styled.Contents>
-        <AdjustInput fontSize="heading3" value="벤자민 버튼" />
+        <AdjustInput
+          fontSize="heading3"
+          {...app.headerForm.controller.register("title")}
+        />
       </Styled.Contents>
     </Styled.Container>
   );
