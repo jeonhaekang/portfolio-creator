@@ -4,6 +4,7 @@ import {
   DESC_TEMPLATE_TYPE,
   MAIN_TEMPLATE_TYPE
 } from "~/components";
+import { CardForm } from "~/components/Templates/CardTemplate/AddCard";
 
 export interface DefaultSection {
   id: string;
@@ -24,6 +25,7 @@ export interface DescSection {
 export interface CardSection {
   title: string;
   description: string;
+  cards: CardForm[];
 }
 
 export interface MainSectionDTO extends DefaultSection {

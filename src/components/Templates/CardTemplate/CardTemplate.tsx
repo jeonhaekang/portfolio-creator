@@ -1,0 +1,32 @@
+import { FlexColumn, Masonry } from "@sun-river/components";
+import { AdjustInput, AdjustTextarea, Section } from "~/components";
+import { AddCard } from "./AddCard";
+import { CARD_TEMPLATE_DEFAULT } from "./CardTemplate.constants";
+import { useCardTemplate } from "./CardTemplate.hooks";
+import { CardTemplateProps } from "./CardTemplate.types";
+
+export const CardTemplate = (props: CardTemplateProps) => {
+  const { cardFrom, ...app } = useCardTemplate(props);
+  return (
+    <Section color={CARD_TEMPLATE_DEFAULT.bgColor}>
+      <FlexColumn gap={24}>
+        <AdjustInput
+          fontSize="heading1"
+          {...cardFrom.controller.register("title")}
+        />
+        <AdjustTextarea
+          fontSize="paragraph2"
+          {...cardFrom.controller.register("description")}
+        />
+
+        <Masonry column={3}>
+          <div>ddd</div>
+          <AddCard onAdd={app.onAddCardHandler} />
+        </Masonry>
+      </FlexColumn>
+
+      {/* <BgColorPicker id={props.id} />
+      <Controller id={props.id} /> */}
+    </Section>
+  );
+};

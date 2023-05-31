@@ -7,7 +7,7 @@ import {
   useState
 } from "react";
 
-type FormValue = string | File;
+type FormValue = string | File | unknown[];
 
 type FormValues = Record<string, FormValue>;
 

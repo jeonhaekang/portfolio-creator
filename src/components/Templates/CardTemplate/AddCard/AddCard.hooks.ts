@@ -8,7 +8,9 @@ export const useAddCard = ({ onAdd }: AddCardProps) => {
 
   const addCardHandler = useCallback(() => {
     onAdd(cardForm.data);
-  }, [cardForm.data, onAdd]);
+
+    cardForm.controller.reset();
+  }, [cardForm, onAdd]);
 
   return {
     cardForm,

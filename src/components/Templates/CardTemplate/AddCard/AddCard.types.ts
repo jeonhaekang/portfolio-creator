@@ -1,4 +1,4 @@
-interface CardForm {
+export interface CardForm {
   title: string;
   subTitle: string;
   description: string;
