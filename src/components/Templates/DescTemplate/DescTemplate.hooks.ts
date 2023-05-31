@@ -1,13 +1,14 @@
 import { useEffect } from "react";
+import { DefaultTemplate } from "~/components";
 import { useForm } from "~/hooks";
+import { DescSection } from "~/types/Portfolio";
 import { DESC_TEMPLATE_INIT } from "./DescTemplate.constants";
-import { DescTemplateProps } from "./DescTemplate.types";
 
 export const useDescTemplate = ({
   id,
   onChange,
   defaultValue
-}: DescTemplateProps) => {
+}: DefaultTemplate<DescSection>) => {
   const descForm = useForm({
     ...DESC_TEMPLATE_INIT,
     ...defaultValue

@@ -2,6 +2,8 @@ import { Button } from "@sun-river/components";
 import { createContext, useContext } from "react";
 import {
   AddTemplate,
+  CARD_TEMPLATE_TYPE,
+  CardTemplate,
   DESC_TEMPLATE_TYPE,
   DescTemplate,
   MainTemplate
@@ -28,6 +30,8 @@ export default function Create() {
         switch (type) {
           case DESC_TEMPLATE_TYPE:
             return <DescTemplate {..._props} defaultValue={data} />;
+          case CARD_TEMPLATE_TYPE:
+            return <CardTemplate {..._props} defaultValue={data} />;
           default:
             return <MainTemplate {..._props} defaultValue={data} />;
         }

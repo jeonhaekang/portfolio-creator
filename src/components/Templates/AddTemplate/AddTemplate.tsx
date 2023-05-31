@@ -1,4 +1,5 @@
 import { Button, Tooltip } from "@sun-river/components";
+import { CARD_TEMPLATE_TYPE } from "../CardTemplate";
 import { DESC_TEMPLATE_TYPE } from "../DescTemplate";
 import { MAIN_TEMPLATE_TYPE } from "../MainTemplate";
 import { useAddTemplate } from "./AddTemplate.hooks";
@@ -27,6 +28,17 @@ export const AddTemplate = () => {
             onClick={() => app.addSection(DESC_TEMPLATE_TYPE)}
           >
             Desc
+          </Button>
+        </Tooltip>
+      </Styled.TemplateItem>
+
+      <Styled.TemplateItem>
+        <Tooltip label="카드 섹션을 추가합니다.">
+          <Button
+            variant="text"
+            onClick={() => app.addSection(CARD_TEMPLATE_TYPE)}
+          >
+            Card
           </Button>
         </Tooltip>
       </Styled.TemplateItem>

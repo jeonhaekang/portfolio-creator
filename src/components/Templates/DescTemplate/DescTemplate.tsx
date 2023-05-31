@@ -5,12 +5,13 @@ import {
   BgColorPicker,
   Controller,
   DESC_TEMPLATE_DEFAULT,
-  DescTemplateProps,
+  DefaultTemplate,
   Section
 } from "~/components";
+import { DescSection } from "~/types/Portfolio";
 import { useDescTemplate } from "./DescTemplate.hooks";
 
-export const DescTemplate = (props: DescTemplateProps) => {
+export const DescTemplate = (props: DefaultTemplate<DescSection>) => {
   const { descForm } = useDescTemplate(props);
 
   return (

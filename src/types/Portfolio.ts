@@ -1,5 +1,9 @@
 import { ColorsKey } from "@sun-river/components";
-import { DESC_TEMPLATE_TYPE, MAIN_TEMPLATE_TYPE } from "~/components";
+import {
+  CARD_TEMPLATE_TYPE,
+  DESC_TEMPLATE_TYPE,
+  MAIN_TEMPLATE_TYPE
+} from "~/components";
 
 export interface DefaultSection {
   id: string;
@@ -17,6 +21,11 @@ export interface DescSection {
   description: string;
 }
 
+export interface CardSection {
+  title: string;
+  description: string;
+}
+
 export interface MainSectionDTO extends DefaultSection {
   type: typeof MAIN_TEMPLATE_TYPE;
   data: MainSection;
@@ -27,7 +36,12 @@ export interface DescSectionDTO extends DefaultSection {
   data: DescSection;
 }
 
-export type PortfolioSection = MainSectionDTO | DescSectionDTO;
+export interface CardSectionDTO extends DefaultSection {
+  type: typeof CARD_TEMPLATE_TYPE;
+  data: CardSection;
+}
+
+export type PortfolioSection = MainSectionDTO | DescSectionDTO | CardSectionDTO;
 
 export type PortfolioSectionType = PortfolioSection["type"];
 
