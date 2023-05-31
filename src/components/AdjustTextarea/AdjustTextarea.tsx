@@ -11,12 +11,7 @@ export const AdjustTextarea = forwardRef<
 
   return (
     <>
-      <Styled.Textarea
-        ref={ref}
-        {...props}
-        {...app.size}
-        onChange={app.onChangeHandler}
-      />
+      <Styled.Textarea ref={ref} {...props} {...app.size} />
 
       <Styled.TextareaMirror
         ref={app.mirrorRef}

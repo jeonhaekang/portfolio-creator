@@ -1,5 +1,4 @@
 import {
-  ChangeEvent,
   InputHTMLAttributes,
   useCallback,
   useEffect,
@@ -9,23 +8,12 @@ import {
 import { AdjustInputProps } from "./AdjustInput.types";
 
 export const useAdjustInput = ({
-  value,
-  onChange
+  value
 }: InputHTMLAttributes<HTMLInputElement> & AdjustInputProps) => {
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [mirrorValue, setMirrorValue] = useState(value);
 
   const mirrorRef = useRef<HTMLSpanElement>(null);
-
-  const onChangeHandler = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target;
-      setMirrorValue(value);
-
-      onChange && onChange(event);
-    },
-    [onChange]
-  );
 
   const adjustWidth = useCallback(() => {
     if (mirrorRef.current) {
@@ -34,6 +22,10 @@ export const useAdjustInput = ({
       setSize({ width, height });
     }
   }, []);
+
+  useEffect(() => {
+    setMirrorValue(value);
+  }, [value]);
 
   useEffect(() => {
     adjustWidth();
@@ -49,7 +41,6 @@ export const useAdjustInput = ({
 
   return {
     size,
-    onChangeHandler,
     mirrorRef,
     mirrorValue
   };

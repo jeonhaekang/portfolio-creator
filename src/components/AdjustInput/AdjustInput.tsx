@@ -11,12 +11,7 @@ export const AdjustInput = forwardRef<
 
   return (
     <>
-      <Styled.Input
-        ref={ref}
-        {...props}
-        {...app.size}
-        onChange={app.onChangeHandler}
-      />
+      <Styled.Input ref={ref} {...props} {...app.size} />
 
       <Styled.InputMirror ref={app.mirrorRef} size={props.fontSize} aria-hidden>
         {app.mirrorValue}

@@ -1,5 +1,4 @@
 import {
-  ChangeEvent,
   TextareaHTMLAttributes,
   useCallback,
   useEffect,
@@ -9,23 +8,12 @@ import {
 import { AdjustTextareaProps } from "./AdjustTextArea.types";
 
 export const useAdjustTextarea = ({
-  onChange,
   value
 }: TextareaHTMLAttributes<HTMLTextAreaElement> & AdjustTextareaProps) => {
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [mirrorValue, setMirrorValue] = useState(value);
 
   const mirrorRef = useRef<HTMLSpanElement>(null);
-
-  const onChangeHandler = useCallback(
-    (event: ChangeEvent<HTMLTextAreaElement>) => {
-      const { value } = event.target;
-      setMirrorValue(value);
-
-      onChange && onChange(event);
-    },
-    [onChange]
-  );
 
   const adjustSize = useCallback(() => {
     if (mirrorRef.current) {
@@ -40,6 +28,10 @@ export const useAdjustTextarea = ({
   }, [adjustSize, mirrorValue]);
 
   useEffect(() => {
+    setMirrorValue(value);
+  }, [value]);
+
+  useEffect(() => {
     window.addEventListener("resize", adjustSize);
 
     return () => {
@@ -49,7 +41,6 @@ export const useAdjustTextarea = ({
 
   return {
     size,
-    onChangeHandler,
     mirrorRef,
     mirrorValue
   };
