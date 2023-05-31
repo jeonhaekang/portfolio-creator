@@ -3,7 +3,7 @@ import { DESC_TEMPLATE_TYPE, MAIN_TEMPLATE_TYPE } from "~/components";
 
 export interface DefaultSection {
   id: string;
-  bgColor: ColorsKey;
+  bgColor?: ColorsKey;
 }
 
 export interface MainSection {

@@ -5,6 +5,7 @@ import {
   BgColorPicker,
   Controller,
   ImageUpload,
+  MAIN_TEMPLATE_DEFAULT,
   Section
 } from "~/components";
 import { useMainTemplate } from "./MainTemplate.hooks";
@@ -14,7 +15,7 @@ export const MainTemplate = (props: MainTemplateProps) => {
   const { mainForm } = useMainTemplate(props);
 
   return (
-    <Section center full>
+    <Section center full color={MAIN_TEMPLATE_DEFAULT.bgColor}>
       <FlexCenter direction="column" gap={12}>
         <ImageUpload
           width={20}

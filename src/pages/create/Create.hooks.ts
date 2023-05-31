@@ -23,7 +23,6 @@ export const useCreate = () => {
     sections: [
       {
         id: uuid(),
-        bgColor: "coral",
         type: MAIN_TEMPLATE_TYPE,
         data: MAIN_TEMPLATE_INIT
       }

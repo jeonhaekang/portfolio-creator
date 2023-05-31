@@ -1,11 +1,12 @@
 import { FlexCenter, Typography } from "@sun-river/components";
 import Image from "next/image";
+import { MAIN_TEMPLATE_DEFAULT } from "~/components/Templates";
 import { Section } from "../Section.contexts";
 import * as Styled from "./MainSection.styles";
 import { MainSectionProps } from "./MainSection.types";
 
 export const MainSection = ({
-  bgColor,
+  bgColor = MAIN_TEMPLATE_DEFAULT.bgColor,
   image,
   title,
   description

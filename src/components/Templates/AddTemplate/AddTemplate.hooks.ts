@@ -12,7 +12,6 @@ export const useAddTemplate = () => {
       setPortfolioSections(sections => {
         const newSection = {
           id: uuid(),
-          bgColor: "coral",
           type,
           data: TEMPLATE_INIT_MAP[type]
         } as PortfolioSection;

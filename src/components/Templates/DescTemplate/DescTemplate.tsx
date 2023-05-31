@@ -4,6 +4,7 @@ import {
   AdjustTextarea,
   BgColorPicker,
   Controller,
+  DESC_TEMPLATE_DEFAULT,
   Section
 } from "~/components";
 import { useDescTemplate } from "./DescTemplate.hooks";
@@ -13,7 +14,7 @@ export const DescTemplate = (props: DescTemplateProps) => {
   const { descForm } = useDescTemplate(props);
 
   return (
-    <Section color="blue">
+    <Section color={DESC_TEMPLATE_DEFAULT.bgColor}>
       <FlexColumn gap={24}>
         <AdjustInput
           fontSize="heading1"
