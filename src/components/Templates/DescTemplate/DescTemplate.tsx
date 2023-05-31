@@ -11,11 +11,14 @@ import {
 import { DescSection } from "~/types/Portfolio";
 import { useDescTemplate } from "./DescTemplate.hooks";
 
-export const DescTemplate = (props: DefaultTemplate<DescSection>) => {
+export const DescTemplate = ({
+  bgColor = DESC_TEMPLATE_DEFAULT.bgColor,
+  ...props
+}: DefaultTemplate<DescSection>) => {
   const { descForm } = useDescTemplate(props);
 
   return (
-    <Section color={DESC_TEMPLATE_DEFAULT.bgColor}>
+    <Section color={bgColor}>
       <FlexColumn gap={24}>
         <AdjustInput
           fontSize="heading1"

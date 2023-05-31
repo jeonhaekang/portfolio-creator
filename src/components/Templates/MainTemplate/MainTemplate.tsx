@@ -11,11 +11,14 @@ import {
 } from "~/components";
 import { useMainTemplate } from "./MainTemplate.hooks";
 
-export const MainTemplate = (props: MainTemplateProps) => {
+export const MainTemplate = ({
+  bgColor = MAIN_TEMPLATE_DEFAULT.bgColor,
+  ...props
+}: MainTemplateProps) => {
   const { mainForm } = useMainTemplate(props);
 
   return (
-    <Section center full color={MAIN_TEMPLATE_DEFAULT.bgColor}>
+    <Section center full color={bgColor}>
       <FlexCenter direction="column" gap={12}>
         <ImageUpload
           width={20}

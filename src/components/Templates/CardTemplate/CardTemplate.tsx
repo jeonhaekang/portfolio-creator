@@ -12,11 +12,14 @@ import { CARD_TEMPLATE_DEFAULT } from "./CardTemplate.constants";
 import { useCardTemplate } from "./CardTemplate.hooks";
 import { CardTemplateProps } from "./CardTemplate.types";
 
-export const CardTemplate = (props: CardTemplateProps) => {
+export const CardTemplate = ({
+  bgColor = CARD_TEMPLATE_DEFAULT.bgColor,
+  ...props
+}: CardTemplateProps) => {
   const { cardFrom, ...app } = useCardTemplate(props);
 
   return (
-    <Section color={CARD_TEMPLATE_DEFAULT.bgColor}>
+    <Section color={bgColor}>
       <FlexColumn gap={24}>
         <AdjustInput
           fontSize="heading1"

@@ -14,7 +14,7 @@ export const useCardTemplate = ({
     ...defaultValue
   });
 
-  const [cards, setCards] = useState<CardForm[]>([]);
+  const [cards, setCards] = useState<CardForm[]>(defaultValue?.cards || []);
 
   const onAddCardHandler = useCallback(
     (card: CardForm) => setCards(prev => [...prev, card]),
