@@ -25,5 +25,5 @@ export const useCardTemplate = ({
     onChange && onChange(id, { ...cardFrom.data, cards });
   }, [cardFrom.data, cards, id, onChange]);
 
-  return { cardFrom, onAddCardHandler };
+  return { cards, cardFrom, onAddCardHandler };
 };

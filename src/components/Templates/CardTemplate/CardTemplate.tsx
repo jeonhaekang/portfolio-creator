@@ -1,5 +1,12 @@
 import { FlexColumn, Masonry } from "@sun-river/components";
-import { AdjustInput, AdjustTextarea, Section } from "~/components";
+import {
+  AdjustInput,
+  AdjustTextarea,
+  BgColorPicker,
+  Card,
+  Controller,
+  Section
+} from "~/components";
 import { AddCard } from "./AddCard";
 import { CARD_TEMPLATE_DEFAULT } from "./CardTemplate.constants";
 import { useCardTemplate } from "./CardTemplate.hooks";
@@ -21,13 +28,16 @@ export const CardTemplate = (props: CardTemplateProps) => {
         />
 
         <Masonry column={3}>
-          <div>ddd</div>
+          {...app.cards.map((item, idx) => {
+            return <Card key={`card_${idx}`} {...item} />;
+          })}
+
           <AddCard onAdd={app.onAddCardHandler} />
         </Masonry>
       </FlexColumn>
 
-      {/* <BgColorPicker id={props.id} />
-      <Controller id={props.id} /> */}
+      <BgColorPicker id={props.id} />
+      <Controller id={props.id} />
     </Section>
   );
 };

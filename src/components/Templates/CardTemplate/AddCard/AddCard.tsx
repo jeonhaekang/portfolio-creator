@@ -11,7 +11,11 @@ export const AddCard = (props: AddCardProps) => {
 
   return (
     <Styled.Container>
-      <ImageUpload height={15} {...cardForm.controller.register("image")} />
+      <ImageUpload
+        required
+        height={15}
+        {...cardForm.controller.register("image")}
+      />
 
       <AdjustInput
         required

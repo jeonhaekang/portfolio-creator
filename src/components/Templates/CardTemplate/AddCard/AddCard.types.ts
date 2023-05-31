@@ -1,4 +1,5 @@
 export interface CardForm {
+  image: string | File;
   title: string;
   subTitle: string;
   description: string;
