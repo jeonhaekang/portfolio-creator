@@ -5,13 +5,14 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { MAIN_TEMPLATE_INIT, MAIN_TEMPLATE_TYPE } from "~/components";
 import { DEFAULT_HEADER_TITLE } from "~/components/Headers/CreateHeader";
-import { uploadFile } from "~/state/server/file";
+import { useFileUpload } from "~/hooks";
 import { useCreatePortfolio } from "~/state/server/portfolio/mutations";
 import { Portfolio, PortfolioSection } from "~/types/Portfolio";
 
 export const useCreate = () => {
   const { alert } = useDialog();
   const { replace } = useRouter();
+  const { upload } = useFileUpload();
 
   const [, setRenderHash] = useState("");
 
@@ -74,39 +75,11 @@ export const useCreate = () => {
     [setPortfolio]
   );
 
-  const fileUpload = useCallback(async (obj: Record<string, any>) => {
-    const entries = Object.entries(obj);
-
-    const result = await entries.reduce(async (acc, [key, value]) => {
-      const _acc = await acc;
-
-      if (value instanceof File) {
-        const downloadUrl = await uploadFile({ file: value, route: "images" });
-
-        _acc[key] = downloadUrl;
-      } else if (typeof value === "object" && value !== null) {
-        _acc[key] = await fileUpload(value);
-      } else {
-        _acc[key] = value;
-      }
-
-      return _acc;
-    }, Promise.resolve({} as typeof obj));
-
-    return result;
-  }, []);
-
   const requestCreatePortfolio = useCallback(async () => {
-    const _sections = portfolio.current.sections;
+    const uploadedPortfolio = await upload(portfolio.current);
 
-    const _updatedSections = (await Promise.all(
-      _sections.map(section => fileUpload(section))
-    )) as PortfolioSection[];
-
-    portfolio.current.sections = _updatedSections;
-
-    createPortfolio.mutate(portfolio.current);
-  }, [createPortfolio, fileUpload]);
+    createPortfolio.mutate(uploadedPortfolio as Portfolio);
+  }, [createPortfolio, upload]);
 
   const values = useMemo(
     () => ({
