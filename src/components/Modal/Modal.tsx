@@ -1,9 +1,11 @@
-import { useBodyScrollLock, useKeyPressEvent } from "@sun-river/components";
+import {
+  useBodyScrollLock,
+  useDialogContext,
+  useKeyPressEvent
+} from "@sun-river/components";
 import { PropsWithElement } from "@sun-river/components/dist/utils";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { createPortal } from "react-dom";
-import { useBoolean } from "~/hooks";
-import { useModal } from "~/state/client/modal";
 import * as Styled from "./Modal.styles";
 import { ModalProps } from "./Modal.types";
 
@@ -12,25 +14,17 @@ export const Modal = ({
   width = 500,
   children
 }: PropsWithElement<ModalProps>) => {
-  const register = useModal(state => state.register);
-
-  const [isOpen, controller] = useBoolean();
+  const { hideDialog } = useDialogContext();
 
   const innerRef = useRef<HTMLDivElement>(null);
 
-  useKeyPressEvent("Escape", () => controller.off());
+  useKeyPressEvent("Escape", () => hideDialog(name));
 
-  useBodyScrollLock(isOpen);
-
-  useEffect(() => {
-    register(name, { isOpen, controller });
-  }, [controller, isOpen, name, register]);
-
-  if (!isOpen) return null;
+  useBodyScrollLock(true);
 
   return createPortal(
     <Styled.Overlay>
-      <Styled.Background onClick={controller.off} />
+      <Styled.Background onClick={() => hideDialog(name)} />
 
       <Styled.Content ref={innerRef} width={width}>
         {children}

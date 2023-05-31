@@ -1,6 +1,11 @@
 import { Typography } from "@sun-river/components";
 import Link from "next/link";
-import { JoinModal, LoginModal } from "~/components";
+import {
+  JOIN_FORM_MODAL,
+  JoinModal,
+  LOGIN_FORM_MODAL,
+  LoginModal
+} from "~/components";
 import * as Styled from "../Header.styles";
 import { useMainHeader } from "./MainHeader.hooks";
 
@@ -29,10 +34,20 @@ export const MainHeader = () => {
             </>
           ) : (
             <>
-              <Styled.MenuButton onClick={app.loginModal?.controller.on}>
+              {/* <Styled.MenuButton onClick={app.loginModal?.controller.on}>
                 Login
               </Styled.MenuButton>
               <Styled.MenuButton onClick={app.joinModal?.controller.on}>
+                Join
+              </Styled.MenuButton> */}
+              <Styled.MenuButton
+                onClick={() => app.showDialog(LOGIN_FORM_MODAL, <LoginModal />)}
+              >
+                Login
+              </Styled.MenuButton>
+              <Styled.MenuButton
+                onClick={() => app.showDialog(JOIN_FORM_MODAL, <JoinModal />)}
+              >
                 Join
               </Styled.MenuButton>
             </>
@@ -40,8 +55,8 @@ export const MainHeader = () => {
         </Styled.Menus>
       </Styled.Contents>
 
-      <LoginModal />
-      <JoinModal />
+      {/* <LoginModal />
+      <JoinModal /> */}
     </Styled.Container>
   );
 };
