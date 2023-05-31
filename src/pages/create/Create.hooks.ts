@@ -2,7 +2,7 @@
 import { useDialog } from "@sun-river/components";
 import deepCopy from "lodash/cloneDeep";
 import { useRouter } from "next/router";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { MAIN_TEMPLATE_INIT, MAIN_TEMPLATE_TYPE } from "~/components";
 import { DEFAULT_HEADER_TITLE } from "~/components/Headers/CreateHeader";
@@ -16,7 +16,7 @@ export const useCreate = () => {
   const { alert, confirm } = useDialog();
   const { replace } = useRouter();
   const { upload } = useFileUpload();
-  const { user, isLogin } = useAccount();
+  const { user } = useAccount();
 
   const [, setRenderHash] = useState("");
 
@@ -118,9 +118,9 @@ export const useCreate = () => {
     }
   }, [confirm, requestRender, savedPortfolio.data]);
 
-  // useEffect(() => {
-  //   savedPortfolioCheck();
-  // }, [savedPortfolioCheck]);
+  useEffect(() => {
+    savedPortfolioCheck();
+  }, [savedPortfolioCheck]);
 
   const values = useMemo(
     () => ({
