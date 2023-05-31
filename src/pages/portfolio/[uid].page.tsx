@@ -10,18 +10,12 @@ const Portfolio = () => {
 
   return (
     <>
-      {app.portfolio.sections.map(({ type, id, bgColor, data }) => {
-        const attributes = {
-          key: id,
-          id,
-          bgColor
-        };
-
+      {app.portfolio.sections.map(({ type, data, ...props }) => {
         switch (type) {
           case DESC_TEMPLATE_TYPE:
-            return <DescSection {...attributes} {...data} />;
+            return <DescSection key={props.id} {...data} {...props} />;
           default:
-            return <MainSection {...attributes} {...data} />;
+            return <MainSection key={props.id} {...data} {...props} />;
         }
       })}
     </>
