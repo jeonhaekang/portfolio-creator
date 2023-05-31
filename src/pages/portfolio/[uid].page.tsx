@@ -9,8 +9,6 @@ import { usePortfolio } from "./Portfolio.hooks";
 const Portfolio = () => {
   const app = usePortfolio();
 
-  console.log(app.portfolio);
-
   if (!app.portfolio) {
     return null;
   }

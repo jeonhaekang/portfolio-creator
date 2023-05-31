@@ -12,7 +12,7 @@ export const DescSection = ({
   return (
     <Section color={bgColor}>
       <FlexColumn gap={24}>
-        <Typography size="heading1" color="white">
+        <Typography as="h2" size="heading1" color="white">
           {title}
         </Typography>
 

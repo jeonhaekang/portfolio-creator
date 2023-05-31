@@ -18,7 +18,7 @@ export const MainSection = ({
           <Image src={image} fill style={{ objectFit: "cover" }} alt="로고" />
         </Styled.ImageBox>
 
-        <Typography size="heading1" color="white">
+        <Typography as="h2" size="heading1" color="white">
           {title}
         </Typography>
 

@@ -1,3 +1,4 @@
+import { Typography } from "@sun-river/components";
 import Link from "next/link";
 import { JoinModal, LoginModal } from "~/components";
 import * as Styled from "../Header.styles";
@@ -9,7 +10,9 @@ export const MainHeader = () => {
   return (
     <Styled.Container>
       <Styled.Contents>
-        <Styled.Title>PortfolioCreator</Styled.Title>
+        <Typography as="h1" size="heading3" color="white">
+          PortfolioCreator
+        </Typography>
 
         <Styled.Menus>
           {app.user.type === "member" && (
