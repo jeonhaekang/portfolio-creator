@@ -1,8 +1,15 @@
-import { DESC_TEMPLATE_TYPE, DescSection, MainSection } from "~/components";
+import {
+  DESC_TEMPLATE_TYPE,
+  DescSection,
+  MainSection,
+  PortfolioHeader
+} from "~/components";
 import { usePortfolio } from "./Portfolio.hooks";
 
 const Portfolio = () => {
   const app = usePortfolio();
+
+  console.log(app.portfolio);
 
   if (!app.portfolio) {
     return null;
@@ -10,6 +17,8 @@ const Portfolio = () => {
 
   return (
     <>
+      <PortfolioHeader {...app.portfolio.header} />
+
       {app.portfolio.sections.map(({ type, data, ...props }) => {
         switch (type) {
           case DESC_TEMPLATE_TYPE:
