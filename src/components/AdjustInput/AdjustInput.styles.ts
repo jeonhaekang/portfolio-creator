@@ -19,7 +19,7 @@ const inputStyle = ({
   const { colors } = theme;
 
   return css`
-    ${setSize(width, height)}
+    ${setSize({ width, height, maxWidth: "100%" })}
     box-sizing: content-box;
 
     background-color: transparent;

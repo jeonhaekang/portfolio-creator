@@ -22,7 +22,7 @@ const textareaStyle = ({
   return css`
     background-color: transparent;
 
-    ${setSize(width, height)}
+    ${setSize({ width, height, maxWidth: "100%" })}
     box-sizing: content-box;
     resize: none;
 
