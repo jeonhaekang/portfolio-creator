@@ -52,6 +52,24 @@ export const useCreate = () => {
     []
   );
 
+  const setPortfolioSections = useCallback(
+    (callback: (__section: Portfolio["sections"]) => typeof __section) => {
+      const _sections = callback(portfolio.current.sections);
+
+      portfolio.current.sections = _sections;
+    },
+    []
+  );
+
+  const setPortfolioHeader = useCallback(
+    (callback: (__header: Portfolio["header"]) => typeof __header) => {
+      const _header = callback(portfolio.current.header);
+
+      portfolio.current.header = _header;
+    },
+    []
+  );
+
   const requestRender = useCallback(() => {
     setRenderHash(JSON.stringify(portfolio.current));
   }, []);
@@ -85,9 +103,17 @@ export const useCreate = () => {
     () => ({
       getPortfolio,
       setPortfolio,
+      setPortfolioSections,
+      setPortfolioHeader,
       requestRender
     }),
-    [getPortfolio, requestRender, setPortfolio]
+    [
+      getPortfolio,
+      requestRender,
+      setPortfolio,
+      setPortfolioHeader,
+      setPortfolioSections
+    ]
   );
 
   return {

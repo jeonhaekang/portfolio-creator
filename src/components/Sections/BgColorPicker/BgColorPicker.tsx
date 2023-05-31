@@ -1,5 +1,4 @@
 import { ColorsKey, Tooltip, theme, utils } from "@sun-river/components";
-import _ from "lodash";
 import { useCallback } from "react";
 import { useCreateContext } from "~/pages/create/index.page";
 import { useSectionContext } from "../Section.contexts";
@@ -8,23 +7,19 @@ import { BgColorPickerProps } from "./BgColorPicker.types";
 
 export const BgColorPicker = ({ id }: BgColorPickerProps) => {
   const { setColors } = useSectionContext();
-  const { setPortfolio } = useCreateContext();
+  const { setPortfolioSections } = useCreateContext();
 
   const onChangeBgColor = useCallback(
     (color: ColorsKey) => {
       setColors(color);
 
-      setPortfolio(portfolio => {
-        const _portfolio = _.cloneDeep(portfolio);
-
-        _portfolio.sections = _portfolio.sections.map(section =>
+      setPortfolioSections(sections =>
+        sections.map(section =>
           section.id === id ? { ...section, bgColor: color } : section
-        );
-
-        return _portfolio;
-      });
+        )
+      );
     },
-    [id, setColors, setPortfolio]
+    [id, setColors, setPortfolioSections]
   );
 
   return (
