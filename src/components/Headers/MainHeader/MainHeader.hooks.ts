@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { JOIN_FORM_MODAL } from "~/components/Modal/JoinModal";
 import { LOGIN_FORM_MODAL } from "~/components/Modal/LoginModal";
-import { useAccount } from "~/state/client/account";
+import { useAccount } from "~/layouts";
 import { useModal } from "~/state/client/modal";
 import { useLogoutUser } from "~/state/server/account/mutations";
 
@@ -11,7 +11,7 @@ export const useMainHeader = () => {
     joinModal: state.modals[JOIN_FORM_MODAL]
   }));
 
-  const user = useAccount(state => state.user);
+  const { user, isLogin } = useAccount();
 
   const logoutUser = useLogoutUser();
 
@@ -23,6 +23,7 @@ export const useMainHeader = () => {
     loginModal,
     joinModal,
     requestLogoutUser,
-    user
+    user,
+    isLogin
   };
 };

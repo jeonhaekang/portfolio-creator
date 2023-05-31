@@ -15,9 +15,9 @@ export const MainHeader = () => {
         </Typography>
 
         <Styled.Menus>
-          {app.user.type === "member" && (
+          {app.user ? (
             <>
-              <Link href={`/portfolio/${app.user.data?.uid}`}>
+              <Link href={`/portfolio/${app.user.uid}`}>
                 <Styled.MenuButton>MyPortfolio</Styled.MenuButton>
               </Link>
               <Link href="/create">
@@ -27,14 +27,12 @@ export const MainHeader = () => {
                 Logout
               </Styled.MenuButton>
             </>
-          )}
-
-          {app.user.type === "guest" && (
+          ) : (
             <>
-              <Styled.MenuButton onClick={app.loginModal.controller.on}>
+              <Styled.MenuButton onClick={app.loginModal?.controller.on}>
                 Login
               </Styled.MenuButton>
-              <Styled.MenuButton onClick={app.joinModal.controller.on}>
+              <Styled.MenuButton onClick={app.joinModal?.controller.on}>
                 Join
               </Styled.MenuButton>
             </>

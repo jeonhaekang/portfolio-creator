@@ -40,6 +40,8 @@ export const useCreate = () => {
     }
   });
 
+  // const checkPortfolio = useGetPortfolio(userId);
+
   const getPortfolio = useCallback(() => portfolio.current, []);
 
   const setPortfolio = useCallback(
