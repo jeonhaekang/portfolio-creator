@@ -3,10 +3,12 @@ import { ChangeEvent, useCallback, useState } from "react";
 import { IMAGE_EXTENSIONS } from "./ImageUpload.constants";
 import { ImageUploadProps } from "./ImageUpload.types";
 
-export const useImageUpload = ({ onChange }: ImageUploadProps) => {
+export const useImageUpload = ({ value, onChange }: ImageUploadProps) => {
   const { alert } = useDialog();
 
-  const [selectedImage, setSelectedImage] = useState<null | string>(null);
+  const [selectedImage, setSelectedImage] = useState<null | string>(
+    value || null
+  );
 
   const onChangeHandler = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {

@@ -4,6 +4,7 @@ import { DESC_TEMPLATE_INIT } from "./DescTemplate.constants";
 import { DescTemplateProps } from "./DescTemplate.types";
 
 export const useDescTemplate = ({
+  id,
   onChange,
   defaultValue
 }: DescTemplateProps) => {
@@ -13,8 +14,8 @@ export const useDescTemplate = ({
   });
 
   useEffect(() => {
-    onChange && onChange(descForm.data);
-  }, [descForm, onChange]);
+    onChange && onChange(id, descForm.data);
+  }, [descForm, id, onChange]);
 
   return { descForm };
 };

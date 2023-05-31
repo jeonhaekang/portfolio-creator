@@ -6,8 +6,8 @@ import * as Styled from "./ImageUpload.styles";
 import { ImageUploadProps } from "./ImageUpload.types";
 
 export const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
-  ({ width, height, ...props }, ref) => {
-    const app = useImageUpload(props);
+  ({ width, height, value, ...props }, ref) => {
+    const app = useImageUpload({ value, ...props });
 
     return (
       <Styled.Label width={width} height={height}>

@@ -1,18 +1,22 @@
+/* eslint-disable consistent-return */
 import { useDialog } from "@sun-river/components";
 import deepCopy from "lodash/cloneDeep";
 import { useRouter } from "next/router";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { MAIN_TEMPLATE_INIT, MAIN_TEMPLATE_TYPE } from "~/components";
 import { DEFAULT_HEADER_TITLE } from "~/components/Headers/CreateHeader";
 import { useFileUpload } from "~/hooks";
+import { useAccount } from "~/layouts";
 import { useCreatePortfolio } from "~/state/server/portfolio/mutations";
+import { useGetPortfolio } from "~/state/server/portfolio/queries";
 import { Portfolio, PortfolioSection } from "~/types/Portfolio";
 
 export const useCreate = () => {
-  const { alert } = useDialog();
+  const { alert, confirm } = useDialog();
   const { replace } = useRouter();
   const { upload } = useFileUpload();
+  const { user, isLogin } = useAccount();
 
   const [, setRenderHash] = useState("");
 
@@ -29,6 +33,8 @@ export const useCreate = () => {
     ]
   });
 
+  const savedPortfolio = useGetPortfolio(user?.uid || "");
+
   const createPortfolio = useCreatePortfolio({
     onSuccess: async () => {
       await alert({ message: "포트폴리오 생성에 성공하였습니다 !!" });
@@ -39,8 +45,6 @@ export const useCreate = () => {
       alert({ message: "포트폴리오 생성에 실패하였습니다." });
     }
   });
-
-  // const checkPortfolio = useGetPortfolio(userId);
 
   const getPortfolio = useCallback(() => portfolio.current, []);
 
@@ -75,22 +79,18 @@ export const useCreate = () => {
     setRenderHash(JSON.stringify(portfolio.current));
   }, []);
 
-  const getTemplateAttributes = useCallback(
-    (id: string) => ({
-      key: id,
-      id,
-      onChange: (formData: PortfolioSection["data"]) => {
-        setPortfolio(portfolio => {
-          const _portfolio = deepCopy(portfolio);
+  const onChangeSection = useCallback(
+    (id: string, data: PortfolioSection["data"]) => {
+      setPortfolio(portfolio => {
+        const _portfolio = deepCopy(portfolio);
 
-          _portfolio.sections = _portfolio.sections.map(section =>
-            section.id === id ? { ...section, data: formData } : section
-          ) as PortfolioSection[];
+        _portfolio.sections = _portfolio.sections.map(section =>
+          section.id === id ? { ...section, data } : section
+        ) as PortfolioSection[];
 
-          return _portfolio;
-        });
-      }
-    }),
+        return _portfolio;
+      });
+    },
     [setPortfolio]
   );
 
@@ -99,6 +99,28 @@ export const useCreate = () => {
 
     createPortfolio.mutate(uploadedPortfolio as Portfolio);
   }, [createPortfolio, upload]);
+
+  const savedPortfolioCheck = useCallback(async () => {
+    if (!savedPortfolio.data) {
+      return false;
+    }
+
+    if (
+      await confirm({
+        message: "이미 작성한 포트폴리오가 존재합니다. 불러오시겠습니까?",
+        confirmLabel: "복원",
+        cancelLabel: "무시"
+      })
+    ) {
+      portfolio.current = savedPortfolio.data;
+
+      requestRender();
+    }
+  }, [confirm, requestRender, savedPortfolio.data]);
+
+  useEffect(() => {
+    savedPortfolioCheck();
+  }, [savedPortfolioCheck]);
 
   const values = useMemo(
     () => ({
@@ -121,6 +143,6 @@ export const useCreate = () => {
     values,
     portfolio,
     requestCreatePortfolio,
-    getTemplateAttributes
+    onChangeSection
   };
 };

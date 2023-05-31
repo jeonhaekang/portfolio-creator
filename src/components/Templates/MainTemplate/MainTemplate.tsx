@@ -6,10 +6,10 @@ import {
   Controller,
   ImageUpload,
   MAIN_TEMPLATE_DEFAULT,
+  MainTemplateProps,
   Section
 } from "~/components";
 import { useMainTemplate } from "./MainTemplate.hooks";
-import { MainTemplateProps } from "./MainTemplate.types";
 
 export const MainTemplate = (props: MainTemplateProps) => {
   const { mainForm } = useMainTemplate(props);
@@ -20,7 +20,7 @@ export const MainTemplate = (props: MainTemplateProps) => {
         <ImageUpload
           width={20}
           height={20}
-          {...mainForm.controller.register("image", false)}
+          {...mainForm.controller.register("image")}
         />
 
         <AdjustInput

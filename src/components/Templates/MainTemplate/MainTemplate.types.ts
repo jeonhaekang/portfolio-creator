@@ -7,5 +7,5 @@ export interface MainTemplate extends Omit<MainSection, "image"> {
 export interface MainTemplateProps {
   id: string;
   defaultValue?: MainTemplate;
-  onChange?: (data: MainTemplate) => void;
+  onChange?: (id: string, data: MainTemplate) => void;
 }

@@ -4,6 +4,7 @@ import { MAIN_TEMPLATE_INIT } from "./MainTemplate.constants";
 import { MainTemplateProps } from "./MainTemplate.types";
 
 export const useMainTemplate = ({
+  id,
   defaultValue,
   onChange
 }: MainTemplateProps) => {
@@ -13,8 +14,8 @@ export const useMainTemplate = ({
   });
 
   useEffect(() => {
-    onChange && onChange(mainForm.data);
-  }, [mainForm, onChange]);
+    onChange && onChange(id, mainForm.data);
+  }, [id, mainForm, onChange]);
 
   return {
     mainForm

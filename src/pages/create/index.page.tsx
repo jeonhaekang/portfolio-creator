@@ -19,12 +19,17 @@ export default function Create() {
     <CreateContext.Provider value={app.values}>
       <CreateHeader />
 
-      {app.portfolio.current.sections.map(({ id, type }) => {
+      {app.portfolio.current.sections.map(({ type, data, ...props }) => {
+        const _props = {
+          ...props,
+          key: props.id,
+          onChange: app.onChangeSection
+        };
         switch (type) {
           case DESC_TEMPLATE_TYPE:
-            return <DescTemplate {...app.getTemplateAttributes(id)} />;
+            return <DescTemplate {..._props} defaultValue={data} />;
           default:
-            return <MainTemplate {...app.getTemplateAttributes(id)} />;
+            return <MainTemplate {..._props} defaultValue={data} />;
         }
       })}
 
