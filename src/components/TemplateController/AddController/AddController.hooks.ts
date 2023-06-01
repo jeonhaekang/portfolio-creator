@@ -2,9 +2,9 @@ import { useCallback } from "react";
 import { v4 as uuid } from "uuid";
 import { useCreateContext } from "~/pages/create/index.page";
 import { PortfolioSection, PortfolioSectionType } from "~/types/Portfolio";
-import { TEMPLATE_INIT_MAP } from "./AddTemplate.constants";
+import { TEMPLATE_INIT_MAP } from "./AddController.constants";
 
-export const useAddTemplate = () => {
+export const useAddController = () => {
   const { setPortfolioSections, requestRender } = useCreateContext();
 
   const addSection = useCallback(

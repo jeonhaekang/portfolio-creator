@@ -1,11 +1,14 @@
 import { Button, Tooltip } from "@sun-river/components";
-import { DESC_TEMPLATE_TYPE, MAIN_TEMPLATE_TYPE } from "~/components";
-import { CARD_TEMPLATE_TYPE } from "../CardTemplate";
-import { useAddTemplate } from "./AddTemplate.hooks";
-import * as Styled from "./AddTemplate.styles";
+import {
+  CARD_TEMPLATE_TYPE,
+  DESC_TEMPLATE_TYPE,
+  MAIN_TEMPLATE_TYPE
+} from "~/components";
+import { useAddController } from "./AddController.hooks";
+import * as Styled from "./AddController.styles";
 
-export const AddTemplate = () => {
-  const app = useAddTemplate();
+export const AddController = () => {
+  const app = useAddController();
 
   return (
     <Styled.TemplateList>

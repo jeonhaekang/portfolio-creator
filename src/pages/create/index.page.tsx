@@ -1,6 +1,6 @@
 import { Button } from "@sun-river/components";
 import { createContext, useContext } from "react";
-import { AddTemplate } from "~/components";
+import { AddController } from "~/components";
 import { CreateHeader } from "~/components/Headers/CreateHeader";
 import {
   CARD_TEMPLATE_TYPE,
@@ -52,7 +52,7 @@ export default function Create() {
 
       <Button onClick={app.requestCreatePortfolio}>생성</Button>
 
-      <AddTemplate />
+      <AddController />
     </CreateContext.Provider>
   );
 }
