@@ -55,27 +55,21 @@ export const useCreate = () => {
 
   const setPortfolio = useCallback(
     (callback: (__portfolio: PortfolioForm) => typeof __portfolio) => {
-      const _portfolio = callback(portfolio.current);
-
-      portfolio.current = _portfolio;
+      portfolio.current = callback(portfolio.current);
     },
     []
   );
 
   const setPortfolioSections = useCallback(
     (callback: (__section: PortfolioForm["sections"]) => typeof __section) => {
-      const _sections = callback(portfolio.current.sections);
-
-      portfolio.current.sections = _sections;
+      portfolio.current.sections = callback(portfolio.current.sections);
     },
     []
   );
 
   const setPortfolioHeader = useCallback(
     (callback: (__header: PortfolioForm["header"]) => typeof __header) => {
-      const _header = callback(portfolio.current.header);
-
-      portfolio.current.header = _header;
+      portfolio.current.header = callback(portfolio.current.header);
     },
     []
   );
