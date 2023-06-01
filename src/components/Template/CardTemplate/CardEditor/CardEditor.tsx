@@ -1,10 +1,10 @@
 import {
   AdjustInput,
   AdjustTextarea,
-  BgColorPicker,
+  BgColorController,
+  EditorProps,
   OrderController
 } from "~/components";
-import { EditorProps } from "../../Template.types";
 import { Card, CardSection, ResponsiveMasonry } from "../Shared";
 import { AddCardEditor } from "./AddCardEditor";
 import { useCardEditor } from "./CardEditor.hooks";
@@ -28,7 +28,7 @@ export const CardEditor = (props: EditorProps<CardEditorFrom>) => {
         <AddCardEditor onAdd={onAddCardHandler} />
       </ResponsiveMasonry>
 
-      <BgColorPicker id={props.id} />
+      <BgColorController id={props.id} />
       <OrderController id={props.id} />
     </CardSection>
   );

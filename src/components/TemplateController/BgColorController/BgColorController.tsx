@@ -1,11 +1,11 @@
 import { ColorsKey, Tooltip, theme, utils } from "@sun-river/components";
 import { useCallback } from "react";
+import { useSectionContext } from "~/components";
 import { useCreateContext } from "~/pages/create/index.page";
-import { useSectionContext } from "../Section.contexts";
-import * as Styled from "./BgColorPicker.styles";
-import { BgColorPickerProps } from "./BgColorPicker.types";
+import * as Styled from "./BgColorController.styles";
+import { BgColorControllerProps } from "./BgColorController.types";
 
-export const BgColorPicker = ({ id }: BgColorPickerProps) => {
+export const BgColorController = ({ id }: BgColorControllerProps) => {
   const { setColors } = useSectionContext();
   const { setPortfolioSections } = useCreateContext();
 

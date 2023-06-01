@@ -1,8 +1,8 @@
 import { Typography } from "@sun-river/components";
-import { Portfolio } from "~/types/Portfolio";
+import { PortfolioForm } from "~/pages/create/Create.types";
 import * as Styled from "../Header.styles";
 
-export const PortfolioHeader = ({ title }: Portfolio["header"]) => {
+export const PortfolioHeader = ({ title }: PortfolioForm["header"]) => {
   return (
     <Styled.Container>
       <Styled.Contents>

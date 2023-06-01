@@ -15,7 +15,6 @@ import { useFileUpload } from "~/hooks";
 import { useAccount } from "~/layouts";
 import { useCreatePortfolio } from "~/state/server/portfolio/mutations";
 import { useGetPortfolio } from "~/state/server/portfolio/queries";
-import { Portfolio } from "~/types/Portfolio";
 import { PortfolioForm } from "./Create.types";
 
 export const useCreate = () => {
@@ -73,7 +72,7 @@ export const useCreate = () => {
   );
 
   const setPortfolioHeader = useCallback(
-    (callback: (__header: Portfolio["header"]) => typeof __header) => {
+    (callback: (__header: PortfolioForm["header"]) => typeof __header) => {
       const _header = callback(portfolio.current.header);
 
       portfolio.current.header = _header;

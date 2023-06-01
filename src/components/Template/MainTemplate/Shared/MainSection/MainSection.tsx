@@ -1,7 +1,6 @@
 import { FlexCenter } from "@sun-river/components";
 import { PropsWithChildren } from "react";
-import { Section } from "~/components";
-import { SectionProps } from "~/components/Sections/Section.types";
+import { Section, SectionProps } from "~/components";
 import { MAIN_SECTION_DEFAULT } from "./MainSection.constants";
 
 export const MainSection = ({

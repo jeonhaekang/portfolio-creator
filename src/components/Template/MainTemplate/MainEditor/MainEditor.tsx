@@ -1,11 +1,11 @@
 import {
   AdjustInput,
   AdjustTextarea,
-  BgColorPicker,
+  BgColorController,
+  EditorProps,
   ImageUpload,
   OrderController
 } from "~/components";
-import { EditorProps } from "../../Template.types";
 import { MainSection } from "../Shared";
 import { useMainEditor } from "./MainEditor.hooks";
 import { MainEditorFrom } from "./MainEditor.types";
@@ -24,7 +24,7 @@ export const MainEditor = (props: EditorProps<MainEditorFrom>) => {
         {...app.mainForm.register("description")}
       />
 
-      <BgColorPicker id={props.id} />
+      <BgColorController id={props.id} />
       <OrderController id={props.id} />
     </MainSection>
   );

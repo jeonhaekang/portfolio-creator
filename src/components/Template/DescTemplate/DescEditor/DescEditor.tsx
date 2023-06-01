@@ -1,10 +1,10 @@
 import {
   AdjustInput,
   AdjustTextarea,
-  BgColorPicker,
+  BgColorController,
+  EditorProps,
   OrderController
 } from "~/components";
-import { EditorProps } from "../../Template.types";
 import { DescSection } from "../Shared";
 import { useDescEditor } from "./DescEditor.hooks";
 import { DescEditorFrom } from "./DescEditor.types";
@@ -21,7 +21,7 @@ export const DescEditor = (props: EditorProps<DescEditorFrom>) => {
         {...app.descForm.register("description")}
       />
 
-      <BgColorPicker id={props.id} />
+      <BgColorController id={props.id} />
       <OrderController id={props.id} />
     </DescSection>
   );
