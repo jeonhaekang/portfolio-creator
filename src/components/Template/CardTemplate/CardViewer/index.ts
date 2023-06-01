@@ -1,1 +1,1 @@
-export { DescViewer } from "./DescViewer";
+export { CardViewer } from "./CardViewer";
