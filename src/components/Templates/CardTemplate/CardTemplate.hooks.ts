@@ -1,3 +1,4 @@
+import { useBreakPoint } from "@sun-river/components";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "~/hooks";
 import { CardForm } from "./AddCard";
@@ -13,6 +14,7 @@ export const useCardTemplate = ({
     ...CARD_TEMPLATE_INIT,
     ...defaultValue
   });
+  const count = useBreakPoint({ 1: 600, 2: 1000, 3: 1400, 4: 1800 }, 3);
 
   const [cards, setCards] = useState<CardForm[]>(defaultValue?.cards || []);
 
@@ -25,5 +27,5 @@ export const useCardTemplate = ({
     onChange && onChange(id, { ...cardFrom.data, cards });
   }, [cardFrom.data, cards, id, onChange]);
 
-  return { cards, cardFrom, onAddCardHandler };
+  return { count, cards, cardFrom, onAddCardHandler };
 };

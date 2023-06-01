@@ -1,4 +1,9 @@
-import { FlexColumn, Masonry, Typography } from "@sun-river/components";
+import {
+  FlexColumn,
+  Masonry,
+  Typography,
+  useBreakPoint
+} from "@sun-river/components";
 import { CARD_TEMPLATE_DEFAULT, Card } from "~/components";
 import { Section } from "../Section.contexts";
 import { CardSectionProps } from "./CardSection.types";
@@ -9,6 +14,8 @@ export const CardSection = ({
   description,
   cards
 }: CardSectionProps) => {
+  const count = useBreakPoint({ 1: 600, 2: 1000, 3: 1400, 4: 1800 }, 3);
+
   return (
     <Section color={bgColor}>
       <FlexColumn gap={24}>
@@ -20,7 +27,7 @@ export const CardSection = ({
           {description}
         </Typography>
 
-        <Masonry column={3}>
+        <Masonry column={count} gap={24}>
           {...cards.map((card, idx) => <Card key={`card_${idx}`} {...card} />)}
         </Masonry>
       </FlexColumn>

@@ -30,7 +30,7 @@ export const CardTemplate = ({
           {...cardFrom.controller.register("description")}
         />
 
-        <Masonry column={3}>
+        <Masonry column={app.count}>
           {...app.cards.map((item, idx) => {
             return <Card key={`card_${idx}`} {...item} />;
           })}
