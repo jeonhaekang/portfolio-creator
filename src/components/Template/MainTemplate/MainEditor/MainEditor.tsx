@@ -1,8 +1,10 @@
-import { AdjustInput } from "~/components/AdjustInput";
-import { AdjustTextarea } from "~/components/AdjustTextarea";
-import { ImageUpload } from "~/components/ImageUpload";
-import { BgColorPicker } from "~/components/Sections";
-import { OrderController } from "~/components/TemplateController";
+import {
+  AdjustInput,
+  AdjustTextarea,
+  BgColorPicker,
+  ImageUpload,
+  OrderController
+} from "~/components";
 import { EditorProps } from "../../Template.types";
 import { MainSection } from "../Shared";
 import { useMainEditor } from "./MainEditor.hooks";

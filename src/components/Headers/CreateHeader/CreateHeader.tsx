@@ -1,4 +1,4 @@
-import { AdjustInput } from "~/components/AdjustInput";
+import { AdjustInput } from "~/components/Form/AdjustInput";
 import * as Styled from "../Header.styles";
 import { useCreateHeader } from "./CreateHeader.hooks";
 

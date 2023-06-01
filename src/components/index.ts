@@ -1,7 +1,5 @@
-export { AdjustInput } from "./AdjustInput";
-export { AdjustTextarea } from "./AdjustTextarea";
+export * from "./Form";
 export * from "./Headers";
-export { ImageUpload } from "./ImageUpload";
 export * from "./Modal";
 export * from "./Sections";
 export * from "./Template";
