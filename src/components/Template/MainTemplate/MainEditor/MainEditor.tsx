@@ -3,7 +3,7 @@ import { AdjustTextarea } from "~/components/AdjustTextarea";
 import { ImageUpload } from "~/components/ImageUpload";
 import { BgColorPicker } from "~/components/Sections";
 import { Controller } from "~/components/Templates";
-import { EditorProps } from "../../Editor.types";
+import { EditorProps } from "../../Template.types";
 import { MainSection } from "../Shared";
 import { useMainEditor } from "./MainEditor.hooks";
 import { MainEditorFrom } from "./MainEditor.types";

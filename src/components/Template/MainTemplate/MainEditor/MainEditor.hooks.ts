@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useForm } from "~/hooks";
-import { EditorProps, MainEditorFrom } from "../..";
+import { MainEditorFrom } from "../..";
+import { EditorProps } from "../../Template.types";
 import { MAIN_EDITOR_FORM_INIT } from "./MainEditor.constants";
 
 export const useMainEditor = ({
