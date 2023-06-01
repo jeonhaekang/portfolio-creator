@@ -4,10 +4,13 @@ import deepCopy from "lodash/cloneDeep";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { v4 as uuid } from "uuid";
-import { MAIN_TEMPLATE_INIT, MAIN_TEMPLATE_TYPE } from "~/components";
+import {
+  MAIN_EDITOR_FORM_INIT,
+  MAIN_TEMPLATE_TYPE,
+  OneOfEditorForm,
+  OneOfTemplates
+} from "~/components";
 import { DEFAULT_HEADER_TITLE } from "~/components/Headers/CreateHeader";
-import { OneOfEditorForm } from "~/components/Template";
-import { OneOfTemplates } from "~/components/Template/Template.types";
 import { useFileUpload } from "~/hooks";
 import { useAccount } from "~/layouts";
 import { useCreatePortfolio } from "~/state/server/portfolio/mutations";
@@ -31,7 +34,7 @@ export const useCreate = () => {
       {
         id: uuid(),
         type: MAIN_TEMPLATE_TYPE,
-        data: MAIN_TEMPLATE_INIT
+        data: MAIN_EDITOR_FORM_INIT
       }
     ]
   });

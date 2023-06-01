@@ -2,7 +2,11 @@ import { Button } from "@sun-river/components";
 import { createContext, useContext } from "react";
 import { AddTemplate } from "~/components";
 import { CreateHeader } from "~/components/Headers/CreateHeader";
-import { MainEditor } from "~/components/Template";
+import {
+  DESC_TEMPLATE_TYPE,
+  DescEditor,
+  MainEditor
+} from "~/components/Template";
 import { useCreate } from "./Create.hooks";
 import { CreateValues } from "./Create.types";
 
@@ -17,6 +21,14 @@ export default function Create() {
 
       {app.portfolio.current.sections.map(({ type, id, data }) => {
         switch (type) {
+          case DESC_TEMPLATE_TYPE:
+            return (
+              <DescEditor
+                id={id}
+                defaultValue={data}
+                onChange={app.onChangeSection}
+              />
+            );
           default:
             return (
               <MainEditor

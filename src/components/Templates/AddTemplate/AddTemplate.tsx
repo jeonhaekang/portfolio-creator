@@ -1,7 +1,6 @@
 import { Button, Tooltip } from "@sun-river/components";
+import { DESC_TEMPLATE_TYPE, MAIN_TEMPLATE_TYPE } from "~/components";
 import { CARD_TEMPLATE_TYPE } from "../CardTemplate";
-import { DESC_TEMPLATE_TYPE } from "../DescTemplate";
-import { MAIN_TEMPLATE_TYPE } from "../MainTemplate";
 import { useAddTemplate } from "./AddTemplate.hooks";
 import * as Styled from "./AddTemplate.styles";
 
