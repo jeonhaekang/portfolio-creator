@@ -1,14 +1,8 @@
 import { Button } from "@sun-river/components";
 import { createContext, useContext } from "react";
-import {
-  AddTemplate,
-  CARD_TEMPLATE_TYPE,
-  CardTemplate,
-  DESC_TEMPLATE_TYPE,
-  DescTemplate,
-  MainTemplate
-} from "~/components";
+import { AddTemplate } from "~/components";
 import { CreateHeader } from "~/components/Headers/CreateHeader";
+import { MainEditor } from "~/components/Template";
 import { useCreate } from "./Create.hooks";
 import { CreateValues } from "./Create.types";
 
@@ -21,19 +15,16 @@ export default function Create() {
     <CreateContext.Provider value={app.values}>
       <CreateHeader />
 
-      {app.portfolio.current.sections.map(({ type, data, ...props }) => {
-        const _props = {
-          ...props,
-          key: props.id,
-          onChange: app.onChangeSection
-        };
+      {app.portfolio.current.sections.map(({ type, id, data }) => {
         switch (type) {
-          case DESC_TEMPLATE_TYPE:
-            return <DescTemplate {..._props} defaultValue={data} />;
-          case CARD_TEMPLATE_TYPE:
-            return <CardTemplate {..._props} defaultValue={data} />;
           default:
-            return <MainTemplate {..._props} defaultValue={data} />;
+            return (
+              <MainEditor
+                id={id}
+                defaultValue={data}
+                onChange={app.onChangeSection}
+              />
+            );
         }
       })}
 

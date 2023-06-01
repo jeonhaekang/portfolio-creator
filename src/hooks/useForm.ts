@@ -81,5 +81,5 @@ export const useForm = <T extends FormValues>(initValues: T) => {
     validation();
   }, [validation]);
 
-  return { data, controller, isValid } as const;
+  return { data, controller, register, reset, isValid } as const;
 };

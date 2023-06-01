@@ -3,9 +3,9 @@ import {
   CardSection,
   DESC_TEMPLATE_TYPE,
   DescSection,
-  MainSection,
   PortfolioHeader
 } from "~/components";
+import { MainViewer } from "~/components/Template";
 import { usePortfolio } from "./Portfolio.hooks";
 
 const Portfolio = () => {
@@ -26,7 +26,9 @@ const Portfolio = () => {
           case CARD_TEMPLATE_TYPE:
             return <CardSection key={props.id} {...data} {...props} />;
           default:
-            return <MainSection key={props.id} {...data} {...props} />;
+            return (
+              <MainViewer key={props.id} {...props} type={type} data={data} />
+            );
         }
       })}
     </>

@@ -8,7 +8,7 @@ import { CardForm } from "~/components/Templates/CardTemplate/AddCard";
 
 export interface DefaultSection {
   id: string;
-  bgColor?: ColorsKey;
+  color?: ColorsKey;
 }
 
 export interface MainSection {

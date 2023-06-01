@@ -12,13 +12,13 @@ import {
 import { useMainTemplate } from "./MainTemplate.hooks";
 
 export const MainTemplate = ({
-  bgColor = MAIN_TEMPLATE_DEFAULT.bgColor,
+  color = MAIN_TEMPLATE_DEFAULT.color,
   ...props
 }: MainTemplateProps) => {
   const { mainForm } = useMainTemplate(props);
 
   return (
-    <Section center full color={bgColor}>
+    <Section center full color={color}>
       <FlexCenter direction="column" gap={12}>
         <ImageUpload
           width={20}

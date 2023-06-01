@@ -1,4 +1,5 @@
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import { PortfolioForm } from "~/pages/create/Create.types";
 import { Portfolio } from "~/types/Portfolio";
 import { getCurrentUser } from "../account";
 import { firebaseApp } from "../firebaseConfig";
@@ -17,5 +18,5 @@ export const getPortfolio = async (uid: string) => {
   const docRef = doc(db, "portfolio", uid);
   const docSnap = (await getDoc(docRef)).data();
 
-  return docSnap as Portfolio;
+  return docSnap as PortfolioForm;
 };

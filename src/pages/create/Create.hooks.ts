@@ -6,11 +6,14 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { MAIN_TEMPLATE_INIT, MAIN_TEMPLATE_TYPE } from "~/components";
 import { DEFAULT_HEADER_TITLE } from "~/components/Headers/CreateHeader";
+import { OneOfEditorForm } from "~/components/Template";
+import { OneOfTemplates } from "~/components/Template/Template.types";
 import { useFileUpload } from "~/hooks";
 import { useAccount } from "~/layouts";
 import { useCreatePortfolio } from "~/state/server/portfolio/mutations";
 import { useGetPortfolio } from "~/state/server/portfolio/queries";
-import { Portfolio, PortfolioSection } from "~/types/Portfolio";
+import { Portfolio } from "~/types/Portfolio";
+import { PortfolioForm } from "./Create.types";
 
 export const useCreate = () => {
   const { alert, confirm } = useDialog();
@@ -20,7 +23,7 @@ export const useCreate = () => {
 
   const [, setRenderHash] = useState("");
 
-  const portfolio = useRef<Portfolio>({
+  const portfolio = useRef<PortfolioForm>({
     header: {
       title: DEFAULT_HEADER_TITLE
     },
@@ -49,7 +52,7 @@ export const useCreate = () => {
   const getPortfolio = useCallback(() => portfolio.current, []);
 
   const setPortfolio = useCallback(
-    (callback: (__portfolio: Portfolio) => typeof __portfolio) => {
+    (callback: (__portfolio: PortfolioForm) => typeof __portfolio) => {
       const _portfolio = callback(portfolio.current);
 
       portfolio.current = _portfolio;
@@ -58,7 +61,7 @@ export const useCreate = () => {
   );
 
   const setPortfolioSections = useCallback(
-    (callback: (__section: Portfolio["sections"]) => typeof __section) => {
+    (callback: (__section: PortfolioForm["sections"]) => typeof __section) => {
       const _sections = callback(portfolio.current.sections);
 
       portfolio.current.sections = _sections;
@@ -80,13 +83,13 @@ export const useCreate = () => {
   }, []);
 
   const onChangeSection = useCallback(
-    (id: string, data: PortfolioSection["data"]) => {
+    (id: string, data: OneOfEditorForm) => {
       setPortfolio(portfolio => {
         const _portfolio = deepCopy(portfolio);
 
         _portfolio.sections = _portfolio.sections.map(section =>
           section.id === id ? { ...section, data } : section
-        ) as PortfolioSection[];
+        ) as OneOfTemplates[];
 
         return _portfolio;
       });
@@ -97,7 +100,7 @@ export const useCreate = () => {
   const requestCreatePortfolio = useCallback(async () => {
     const uploadedPortfolio = await upload(portfolio.current);
 
-    createPortfolio.mutate(uploadedPortfolio as Portfolio);
+    createPortfolio.mutate(uploadedPortfolio as PortfolioForm);
   }, [createPortfolio, upload]);
 
   const savedPortfolioCheck = useCallback(async () => {

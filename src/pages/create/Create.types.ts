@@ -1,13 +1,22 @@
-import { Portfolio } from "~/types/Portfolio";
+import { OneOfTemplates } from "~/components/Template/Template.types";
+
+export interface PortfolioForm {
+  header: {
+    title: string;
+  };
+  sections: OneOfTemplates[];
+}
 
 export interface CreateValues {
-  getPortfolio: () => Portfolio;
-  setPortfolio: (callback: (portfolio: Portfolio) => typeof portfolio) => void;
+  getPortfolio: () => PortfolioForm;
+  setPortfolio: (
+    callback: (portfolio: PortfolioForm) => typeof portfolio
+  ) => void;
   setPortfolioSections: (
-    callback: (sections: Portfolio["sections"]) => typeof sections
+    callback: (sections: PortfolioForm["sections"]) => typeof sections
   ) => void;
   setPortfolioHeader: (
-    callback: (header: Portfolio["header"]) => typeof header
+    callback: (header: PortfolioForm["header"]) => typeof header
   ) => void;
   requestRender: VoidFunction;
 }

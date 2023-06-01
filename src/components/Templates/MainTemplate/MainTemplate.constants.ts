@@ -7,5 +7,5 @@ export const MAIN_TEMPLATE_INIT = {
 } as const;
 
 export const MAIN_TEMPLATE_DEFAULT = {
-  bgColor: "coral"
+  color: "coral"
 } as const;

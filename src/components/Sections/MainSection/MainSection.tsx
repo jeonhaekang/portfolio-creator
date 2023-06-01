@@ -13,7 +13,7 @@ export const MainSection = ({
 }: MainSectionProps) => {
   return (
     <Section full center color={bgColor}>
-      <FlexCenter direction="column" gap={12}>
+      <FlexCenter direction="column" gap={24}>
         <Styled.ImageBox>
           <Image src={image} fill style={{ objectFit: "cover" }} alt="로고" />
         </Styled.ImageBox>
