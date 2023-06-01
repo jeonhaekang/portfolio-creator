@@ -7,7 +7,7 @@ import * as Styled from "./MainViewer.styles";
 export const MainViewer = ({
   color,
   data: { image, title, description }
-}: MainTemplate) => {
+}: Omit<MainTemplate, "type">) => {
   return (
     <MainSection color={color}>
       <Styled.ImageBox>

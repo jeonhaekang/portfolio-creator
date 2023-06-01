@@ -1,11 +1,9 @@
 import {
   CARD_TEMPLATE_TYPE,
-  CardSection,
   DESC_TEMPLATE_TYPE,
-  DescSection,
   PortfolioHeader
 } from "~/components";
-import { MainViewer } from "~/components/Template";
+import { CardViewer, DescViewer, MainViewer } from "~/components/Template";
 import { usePortfolio } from "./Portfolio.hooks";
 
 const Portfolio = () => {
@@ -22,13 +20,11 @@ const Portfolio = () => {
       {app.portfolio.sections.map(({ type, data, ...props }) => {
         switch (type) {
           case DESC_TEMPLATE_TYPE:
-            return <DescSection key={props.id} {...data} {...props} />;
+            return <DescViewer key={props.id} {...props} data={data} />;
           case CARD_TEMPLATE_TYPE:
-            return <CardSection key={props.id} {...data} {...props} />;
+            return <CardViewer key={props.id} {...props} data={data} />;
           default:
-            return (
-              <MainViewer key={props.id} {...props} type={type} data={data} />
-            );
+            return <MainViewer key={props.id} {...props} data={data} />;
         }
       })}
     </>

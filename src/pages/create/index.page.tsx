@@ -21,32 +21,20 @@ export default function Create() {
     <CreateContext.Provider value={app.values}>
       <CreateHeader />
 
-      {app.portfolio.current.sections.map(({ type, id, data }) => {
+      {app.getPortfolio().sections.map(({ type, data, ...props }) => {
+        const _props = {
+          ...props,
+          key: props.id,
+          onChange: app.onChangeSection
+        } as const;
+
         switch (type) {
           case DESC_TEMPLATE_TYPE:
-            return (
-              <DescEditor
-                id={id}
-                defaultValue={data}
-                onChange={app.onChangeSection}
-              />
-            );
+            return <DescEditor {..._props} defaultValue={data} />;
           case CARD_TEMPLATE_TYPE:
-            return (
-              <CardEditor
-                id={id}
-                defaultValue={data}
-                onChange={app.onChangeSection}
-              />
-            );
+            return <CardEditor {..._props} defaultValue={data} />;
           default:
-            return (
-              <MainEditor
-                id={id}
-                defaultValue={data}
-                onChange={app.onChangeSection}
-              />
-            );
+            return <MainEditor {..._props} defaultValue={data} />;
         }
       })}
 

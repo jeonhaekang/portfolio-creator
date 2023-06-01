@@ -147,6 +147,7 @@ export const useCreate = () => {
   return {
     values,
     portfolio,
+    getPortfolio,
     requestCreatePortfolio,
     onChangeSection
   };

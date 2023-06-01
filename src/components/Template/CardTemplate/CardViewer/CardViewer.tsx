@@ -5,7 +5,7 @@ import { Card, CardSection, ResponsiveMasonry } from "../Shared";
 export const CardViewer = ({
   color,
   data: { title, description, cards }
-}: CardTemplate) => {
+}: Omit<CardTemplate, "type">) => {
   return (
     <CardSection color={color}>
       <Typography as="h2" size="heading1" color="white">

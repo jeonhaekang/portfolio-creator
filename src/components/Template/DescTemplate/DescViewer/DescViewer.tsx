@@ -5,7 +5,7 @@ import { DescSection } from "../Shared";
 export const DescViewer = ({
   color,
   data: { title, description }
-}: DescTemplate) => {
+}: Omit<DescTemplate, "type">) => {
   return (
     <DescSection color={color}>
       <FlexColumn>
