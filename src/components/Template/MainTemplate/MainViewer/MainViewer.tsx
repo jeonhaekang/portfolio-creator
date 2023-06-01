@@ -1,13 +1,13 @@
 import { Typography } from "@sun-river/components";
 import Image from "next/image";
-import { MainSectionDTO } from "~/types/Portfolio";
+import { MainTemplate } from "../MainTemplate.types";
 import { MainSection } from "../Shared";
 import * as Styled from "./MainViewer.styles";
 
 export const MainViewer = ({
   color,
   data: { image, title, description }
-}: MainSectionDTO) => {
+}: MainTemplate) => {
   return (
     <MainSection color={color}>
       <Styled.ImageBox>

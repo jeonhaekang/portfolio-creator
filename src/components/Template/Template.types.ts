@@ -1,7 +1,8 @@
 import { ColorsKey } from "@sun-river/components";
+import { DescTemplate } from "./DescTemplate/DescTemplate.types";
 import { MainTemplate } from "./MainTemplate";
 
-export type OneOfTemplates = MainTemplate;
+export type OneOfTemplates = MainTemplate | DescTemplate;
 
 export type OneOfEditorForm = OneOfTemplates["data"];
 
