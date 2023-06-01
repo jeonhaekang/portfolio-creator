@@ -2,7 +2,7 @@ import {
   AdjustInput,
   AdjustTextarea,
   BgColorPicker,
-  Controller
+  OrderController
 } from "~/components";
 import { EditorProps } from "../../Template.types";
 import { Card, CardSection, ResponsiveMasonry } from "../Shared";
@@ -29,7 +29,7 @@ export const CardEditor = (props: EditorProps<CardEditorFrom>) => {
       </ResponsiveMasonry>
 
       <BgColorPicker id={props.id} />
-      <Controller id={props.id} />
+      <OrderController id={props.id} />
     </CardSection>
   );
 };

@@ -2,7 +2,7 @@ import { AdjustInput } from "~/components/AdjustInput";
 import { AdjustTextarea } from "~/components/AdjustTextarea";
 import { ImageUpload } from "~/components/ImageUpload";
 import { BgColorPicker } from "~/components/Sections";
-import { Controller } from "~/components/Templates";
+import { OrderController } from "~/components/TemplateController";
 import { EditorProps } from "../../Template.types";
 import { MainSection } from "../Shared";
 import { useMainEditor } from "./MainEditor.hooks";
@@ -23,7 +23,7 @@ export const MainEditor = (props: EditorProps<MainEditorFrom>) => {
       />
 
       <BgColorPicker id={props.id} />
-      <Controller id={props.id} />
+      <OrderController id={props.id} />
     </MainSection>
   );
 };

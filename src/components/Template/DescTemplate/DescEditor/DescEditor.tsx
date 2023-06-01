@@ -1,7 +1,7 @@
 import { AdjustInput } from "~/components/AdjustInput";
 import { AdjustTextarea } from "~/components/AdjustTextarea";
 import { BgColorPicker } from "~/components/Sections";
-import { Controller } from "~/components/Templates";
+import { OrderController } from "~/components/TemplateController";
 import { EditorProps } from "../../Template.types";
 import { DescSection } from "../Shared";
 import { useDescEditor } from "./DescEditor.hooks";
@@ -20,7 +20,7 @@ export const DescEditor = (props: EditorProps<DescEditorFrom>) => {
       />
 
       <BgColorPicker id={props.id} />
-      <Controller id={props.id} />
+      <OrderController id={props.id} />
     </DescSection>
   );
 };
