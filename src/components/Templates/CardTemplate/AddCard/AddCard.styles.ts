@@ -3,7 +3,7 @@ import { border, flex, theme } from "@sun-river/components";
 import { hexToRgba } from "~/utils";
 
 export const Container = styled.div`
-  ${flex.column({ gap: "1rem" })}
+  ${flex.column({ gap: "0.5rem" })}
 
   padding: 1rem;
 

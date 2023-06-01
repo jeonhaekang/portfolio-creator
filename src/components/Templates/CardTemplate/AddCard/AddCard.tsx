@@ -13,7 +13,7 @@ export const AddCard = (props: AddCardProps) => {
     <Styled.Container>
       <ImageUpload
         required
-        height={15}
+        height={10}
         {...cardForm.controller.register("image")}
       />
 
@@ -24,12 +24,12 @@ export const AddCard = (props: AddCardProps) => {
       />
       <AdjustInput
         required
-        fontSize="paragraph2"
+        fontSize="paragraph3"
         {...cardForm.controller.register("subTitle")}
       />
       <AdjustTextarea
         required
-        fontSize="paragraph3"
+        fontSize="paragraph2"
         {...cardForm.controller.register("description")}
       />
 
