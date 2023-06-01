@@ -3,6 +3,8 @@ import { createContext, useContext } from "react";
 import { AddTemplate } from "~/components";
 import { CreateHeader } from "~/components/Headers/CreateHeader";
 import {
+  CARD_TEMPLATE_TYPE,
+  CardEditor,
   DESC_TEMPLATE_TYPE,
   DescEditor,
   MainEditor
@@ -24,6 +26,14 @@ export default function Create() {
           case DESC_TEMPLATE_TYPE:
             return (
               <DescEditor
+                id={id}
+                defaultValue={data}
+                onChange={app.onChangeSection}
+              />
+            );
+          case CARD_TEMPLATE_TYPE:
+            return (
+              <CardEditor
                 id={id}
                 defaultValue={data}
                 onChange={app.onChangeSection}

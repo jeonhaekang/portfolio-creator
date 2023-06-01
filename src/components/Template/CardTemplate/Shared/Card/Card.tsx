@@ -1,7 +1,7 @@
 import { Typography } from "@sun-river/components";
 import Image from "next/image";
 import { useMemo } from "react";
-import { CardForm } from "../Templates/CardTemplate/AddCard";
+import { AddCardEditorForm } from "../../CardEditor/AddCardEditor";
 import * as Styled from "./Card.styles";
 
 export const Card = ({
@@ -11,7 +11,7 @@ export const Card = ({
   description,
   linkLabel,
   link
-}: CardForm) => {
+}: AddCardEditorForm) => {
   const imageUrl = useMemo(
     () => (image instanceof File ? URL.createObjectURL(image) : image),
     [image]

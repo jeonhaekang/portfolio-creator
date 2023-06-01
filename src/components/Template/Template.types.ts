@@ -1,8 +1,9 @@
 import { ColorsKey } from "@sun-river/components";
+import { CardTemplate } from "./CardTemplate";
 import { DescTemplate } from "./DescTemplate/DescTemplate.types";
 import { MainTemplate } from "./MainTemplate";
 
-export type OneOfTemplates = MainTemplate | DescTemplate;
+export type OneOfTemplates = MainTemplate | DescTemplate | CardTemplate;
 
 export type OneOfEditorForm = OneOfTemplates["data"];
 
