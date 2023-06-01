@@ -42,7 +42,7 @@ export const useCreate = () => {
 
   const createPortfolio = useCreatePortfolio({
     onSuccess: async () => {
-      await alert({ message: "포트폴리오 생성에 성공하였습니다 !!" });
+      await alert({ message: "포트폴리오 생성에 성공하였습니다." });
 
       replace("/");
     },
@@ -131,16 +131,18 @@ export const useCreate = () => {
     () => ({
       getPortfolio,
       setPortfolio,
-      setPortfolioSections,
       setPortfolioHeader,
-      requestRender
+      setPortfolioSections,
+      requestRender,
+      requestCreatePortfolio
     }),
     [
       getPortfolio,
-      requestRender,
       setPortfolio,
       setPortfolioHeader,
-      setPortfolioSections
+      setPortfolioSections,
+      requestRender,
+      requestCreatePortfolio
     ]
   );
 

@@ -3,7 +3,8 @@ import { useForm } from "~/hooks";
 import { useCreateContext } from "~/pages/create/index.page";
 
 export const useCreateHeader = () => {
-  const { getPortfolio, setPortfolioHeader } = useCreateContext();
+  const { getPortfolio, setPortfolioHeader, requestCreatePortfolio } =
+    useCreateContext();
 
   const headerForm = useForm(getPortfolio().header);
 
@@ -12,6 +13,7 @@ export const useCreateHeader = () => {
   }, [headerForm.data, setPortfolioHeader]);
 
   return {
-    headerForm
+    headerForm,
+    requestCreatePortfolio
   };
 };

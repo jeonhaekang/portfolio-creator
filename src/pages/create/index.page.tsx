@@ -1,4 +1,3 @@
-import { Button } from "@sun-river/components";
 import { createContext, useContext } from "react";
 import { AddController } from "~/components";
 import { CreateHeader } from "~/components/Headers/CreateHeader";
@@ -37,8 +36,6 @@ export default function Create() {
             return <MainEditor {..._props} defaultValue={data} />;
         }
       })}
-
-      <Button onClick={app.requestCreatePortfolio}>생성</Button>
 
       <AddController />
     </CreateContext.Provider>

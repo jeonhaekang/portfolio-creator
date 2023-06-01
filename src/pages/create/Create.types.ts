@@ -19,4 +19,5 @@ export interface CreateValues {
     callback: (header: PortfolioForm["header"]) => typeof header
   ) => void;
   requestRender: VoidFunction;
+  requestCreatePortfolio: () => Promise<void>;
 }
